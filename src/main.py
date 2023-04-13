@@ -2,8 +2,21 @@ import time
 
 
 tabuleiro=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-PecasA= []
+PecasP= []
 PecasB= []
+
+LinhasDirecao1= [[1,3,5],[2,7,9],[4,6,12], [8,11,14],[10,13,15]]
+PontDirecao1=[0,0]
+Direcao1=[LinhasDirecao1,PontDirecao1]
+
+LinhasDirecao2=[[1,2,4],[3,6,8],[5,7,10],[9,11,13],[12,14,15]]
+PontDirecao2=[0,0]
+Direcao2=[LinhasDirecao2,PontDirecao2]
+
+LinhasDirecao3=[[4,8,10],[2,6,13],[1,11,15],[3,7,14],[5,9,12]]
+PontDirecao3=[0,0]
+Direcao3=[LinhasDirecao3,PontDirecao3]
+
 
 def sair():
     print("-----------------------------------------")
@@ -49,6 +62,9 @@ def board(player):
         print(f"          \_____/  {tabuleiro[14]}   \_____/")
         print(f"                \       /")
         print(f"                 \_____/")
+        print(f'{Direcao1[1][0]} - {Direcao1[1][1]}')
+        print(f'{Direcao2[1][0]} - {Direcao2[1][1]}')
+        print(f'{Direcao3[1][0]} - {Direcao3[1][1]}')
         jogada = int(input("Escolha onde quer jogar:"))
 
         while(tabuleiro[jogada-1]=='P' or tabuleiro[jogada-1] == 'B'):
@@ -65,8 +81,46 @@ def board(player):
             else:
                 tabuleiro[jogada-1]='P'
 
+def ContaPecas(tuplo):
+    nP=0
+    nB=0
+    i=0
+    while(i<3):
+        if tabuleiro[tuplo[i]-1]=="B" or tabuleiro[tuplo[i]-1]=="B ":
+                nB += 1
+        elif tabuleiro[tuplo[i]-1]=="P" or tabuleiro[tuplo[i]-1]=="P ":
+                nP += 1
+        i +=  1
+
+    if nP > nB:
+         return 'P'
+    if nP < nB:
+         return 'B'
+    if nP == nB:
+         return 'X'
+
+
+def ContaDirecao(direcao):
+    i=0
+    dP=0
+    dB=0
+
+    while i<5:
+        V=ContaPecas(direcao[0][i])
+        if(V=='P'):
+              dP += 1
+        elif(V=='B'):
+              dB += 1
+        i += 1
+
+    direcao[1][0]=dB
+    direcao[1][1]=dP
+        
+        
+
     
-    
+
+
     
 def main():
     
@@ -82,6 +136,9 @@ def main():
                 player=False
             else:
                 player=True
+            ContaDirecao(Direcao1)
+            ContaDirecao(Direcao2)
+            ContaDirecao(Direcao3)
             board(player)
 
     elif(op == 2):
