@@ -1,6 +1,5 @@
 import time
 
-
 tabuleiro=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 PecasP= []
 PecasB= []
@@ -26,18 +25,24 @@ def sair():
     exit()
     
 def menu():
-    print("-----------------------------------------")
-    print("|\tBem vindo ao Majorities!\t|")
-    print("-----------------------------------------")
-    print("|\t1. Jogar contra Humano \t\t|")
-    print("\n")
-    print("|\t2. Jogar contra Minimax \t|")
-    print("\n")
-    print("|\t3. Jogar Minimax contra Random \t|")
-    print("\n")
-    print("|\t4. Sair \t\t\t|")
-    print("-----------------------------------------")
-    op = int(input("\n\tOpção: ")) 
+
+    op = -1
+    while op not in [0,1,2,3]:
+        print("-----------------------------------------")
+        print("|\tBem vindo ao Majorities!\t|")
+        print("-----------------------------------------")
+        print("|\t1. Jogar contra Humano \t\t|")
+        print("\n")
+        print("|\t2. Jogar contra Minimax \t|")
+        print("\n")
+        print("|\t3. Jogar Minimax contra Random \t|")
+        print("\n")
+        print("|\t0. Sair \t\t\t|")
+        print("-----------------------------------------")
+        op = int(input("\n\tOpção: ")) 
+        if op not in [0,1,2,3]:
+             print("\n\tInsira um valor entre 0 e 3...")
+
     return op
 
 def board(player):
@@ -99,7 +104,6 @@ def ContaPecas(tuplo):
     
     return 'X'
 
-
 def ContaDirecao(direcao):
     i=0
     dP=0
@@ -119,18 +123,16 @@ def ContaDirecao(direcao):
         
 
     
-
-
-    
 def main():
-    
     op = menu()
-    
+
     if(op == 1):
         end=0
         player = True
-        while( end==0):
-            print("\n\t Humano vs Humano")
+        p1 = input("\n\tIntroduza o nome do Player 1: ")
+        p2 = input("\n\tIntroduza o nome do Player 2: ")
+        while( end == 0):
+            print("\n\t\t" + p1 + " vs " + p2)
             board(player)
             if(player==True):
                 player=False
@@ -143,20 +145,15 @@ def main():
 
     elif(op == 2):
         print("\n\t Humano vs Minimax")
-        
+            
     elif(op == 3):
         print("\n\t Minimax vs Rando") 
         
-    elif(op == 4):
-        sair()
-    else:
-        print("\n\tEscolha uma das opções acima....")
-        
-        
+    elif(op == 0):
+        sair()  
     
             
+        
     
-    
-
 main()
     
