@@ -41,27 +41,27 @@ def menu():
     return op
 
 def board(player):
-        print(f"                  _____")
-        print(f"                 /     \\")
-        print(f"           _____/   {tabuleiro[0]}   \\_____")
-        print(f"          /     \       /     \\")
-        print(f"    _____/   {tabuleiro[1]}   \_____/   {tabuleiro[2]}   \\_____")
-        print(f"   /     \       / XXX \       /     \\")
-        print(f"  /   {tabuleiro[3]}   \_____/ XXXXX \_____/   {tabuleiro[4]}   \\")
-        print(f"  \       /     \ XXXXX /     \       /")
-        print(f"   \_____/   {tabuleiro[5]}   \_____/   {tabuleiro[6]}   \_____/")
-        print(f"   /     \       / XXX \       /     \\")
-        print(f"  /   {tabuleiro[7]}   \_____/ XXXXX \_____/   {tabuleiro[8]}   \\")
-        print(f"  \       / XXX \ XXXXX / XXX \       /")
-        print(f"   \_____/ XXXXX \_____/ XXXXX \_____/")
-        print(f"   /     \ XXXXX /     \ XXXXX /     \\")
-        print(f"  /  {tabuleiro[9]}   \_____/  {tabuleiro[10]}   \_____/  {tabuleiro[11]}   \\")
-        print(f"  \       /     \       /     \       /")
-        print(f"   \_____/  {tabuleiro[12]}   \_____/  {tabuleiro[13]}   \_____/")
-        print(f"         \       /     \       /")
-        print(f"          \_____/  {tabuleiro[14]}   \_____/")
-        print(f"                \       /")
-        print(f"                 \_____/")
+        print(f"                  _____                   |")
+        print(f"                 /     \\                  |")
+        print(f"           _____/   {tabuleiro[0]}   \\_____            |")
+        print(f"          /     \       /     \\           |")
+        print(f"    _____/   {tabuleiro[1]}   \_____/   {tabuleiro[2]}   \\_____     |")
+        print(f"   /     \       / XXX \       /     \\    |")
+        print(f"  /   {tabuleiro[3]}   \_____/ XXXXX \_____/   {tabuleiro[4]}   \\   |")
+        print(f"  \       /     \ XXXXX /     \       /   |")
+        print(f"   \_____/   {tabuleiro[5]}   \_____/   {tabuleiro[6]}   \_____/    |")
+        print(f"   /     \       / XXX \       /     \\    |")
+        print(f"  /   {tabuleiro[7]}   \_____/ XXXXX \_____/   {tabuleiro[8]}   \\   |")
+        print(f"  \       / XXX \ XXXXX / XXX \       /   |")
+        print(f"   \_____/ XXXXX \_____/ XXXXX \_____/    |")
+        print(f"   /     \ XXXXX /     \ XXXXX /     \\    |")
+        print(f"  /  {tabuleiro[9]}   \_____/  {tabuleiro[10]}   \_____/  {tabuleiro[11]}   \\   |")
+        print(f"  \       /     \       /     \       /   |")
+        print(f"   \_____/  {tabuleiro[12]}   \_____/  {tabuleiro[13]}   \_____/    |")
+        print(f"         \       /     \       /          |")
+        print(f"          \_____/  {tabuleiro[14]}   \_____/           |")
+        print(f"                \       /                 |")
+        print(f"                 \_____/                  |")
         print(f'{Direcao1[1][0]} - {Direcao1[1][1]}')
         print(f'{Direcao2[1][0]} - {Direcao2[1][1]}')
         print(f'{Direcao3[1][0]} - {Direcao3[1][1]}')
@@ -92,12 +92,12 @@ def ContaPecas(tuplo):
                 nP += 1
         i +=  1
 
-    if nP > nB:
+    if nP > nB and nP> 1:
          return 'P'
-    if nP < nB:
+    if nP < nB and nB>1:
          return 'B'
-    if nP == nB:
-         return 'X'
+    
+    return 'X'
 
 
 def ContaDirecao(direcao):
