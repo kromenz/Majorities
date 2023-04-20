@@ -19,6 +19,11 @@ PontDirecao3=[0,0]
 VencedorDirecao3=[' ',' ',' ',' ',' ']
 Direcao3=[LinhasDirecao3,PontDirecao3,VencedorDirecao3]
 
+class bcolors:
+    B = '\033[96m' #BLUE
+    A = '\033[91m' #RED
+    RESET = '\033[0m' #RESET COLOR
+
 
 def sair():
     print("-----------------------------------------")
@@ -54,15 +59,15 @@ def board():
         print(f"           _____/   {tabuleiro[0]}   \\_____            |", end="     \n")
         print(f"          /     \       /     \\           |", end="     \n")
         print(f"    _____/   {tabuleiro[1]}   \_____/   {tabuleiro[2]}   \\_____     |", end="     \n")
-        print(f"   /     \       / XXX \       /     \\    |", end="     \n")
-        print(f"  /   {tabuleiro[3]}   \_____/ XXXXX \_____/   {tabuleiro[4]}   \\   |", end="     \n")
-        print(f"  \       /     \ XXXXX /     \       /   |", end="     \n")
-        print(f"   \_____/   {tabuleiro[5]}   \_____/   {tabuleiro[6]}   \_____/    |", end="     \n")
-        print(f"   /     \       / XXX \       /     \\    |", end=f"            {Direcao1[1][0]} - {Direcao1[1][1]}           |           {Direcao2[1][0]} - {Direcao2[1][1]}           |           {Direcao3[1][0]} - {Direcao3[1][1]}     \n")
-        print(f"  /   {tabuleiro[7]}   \_____/ XXXXX \_____/   {tabuleiro[8]}   \\   |", end=f"             ___            |            ___            |            ___                 \n")
-        print(f"  \       / XXX \ XXXXX / XXX \       /   |", end=f"         ___/ {Direcao1[2][0]} \___        |        ___/ {Direcao2[2][0]} \___        |        ___/ {Direcao3[2][2]} \___             \n")
-        print(f"   \_____/ XXXXX \_____/ XXXXX \_____/    |", end=f"     ___/ {Direcao1[2][1]} \___/ {Direcao1[2][0]} \___    |    ___/ {Direcao2[2][0]} \___/ {Direcao2[2][1]} \___    |    ___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___         \n")
-        print(f"   /     \ XXXXX /     \ XXXXX /     \\    |", end=f"    / {Direcao1[2][2]} \___/ {Direcao1[2][1]} \___/ {Direcao1[2][0]} \   |   / {Direcao2[2][0]} \___/ {Direcao2[2][1]} \___/ {Direcao2[2][2]} \   |   / {Direcao3[2][0]} \___/ {Direcao3[2][2]} \___/ {Direcao3[2][4]} \        \n")
+        print(f"   /     \       /     \       /     \\    |", end="     \n")
+        print(f"  /   {tabuleiro[3]}   \_____/       \_____/   {tabuleiro[4]}   \\   |", end="     \n")
+        print(f"  \       /     \       /     \       /   |", end="     \n")
+        print(f"   \_____/   {tabuleiro[5]}   \     /   {tabuleiro[6]}   \_____/    |", end="     \n")
+        print(f"   /     \       /     \       /     \\    |", end=f"            {Direcao1[1][0]} - {Direcao1[1][1]}           |           {Direcao2[1][0]} - {Direcao2[1][1]}           |           {Direcao3[1][0]} - {Direcao3[1][1]}     \n")
+        print(f"  /   {tabuleiro[7]}   \_____/       \_____/   {tabuleiro[8]}   \\   |", end=f"             ___            |            ___            |            ___                 \n")
+        print(f"  \       /                   \       /   |", end=f"         ___/ {Direcao1[2][0]} \___        |        ___/ {Direcao2[2][0]} \___        |        ___/ {Direcao3[2][2]} \___             \n")
+        print(f"   \_____/        _____        \_____/    |", end=f"     ___/ {Direcao1[2][1]} \___/ {Direcao1[2][0]} \___    |    ___/ {Direcao2[2][0]} \___/ {Direcao2[2][1]} \___    |    ___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___         \n")
+        print(f"   /     \       /     \       /     \\    |", end=f"    / {Direcao1[2][2]} \___/ {Direcao1[2][1]} \___/ {Direcao1[2][0]} \   |   / {Direcao2[2][0]} \___/ {Direcao2[2][1]} \___/ {Direcao2[2][2]} \   |   / {Direcao3[2][0]} \___/ {Direcao3[2][2]} \___/ {Direcao3[2][4]} \        \n")
         print(f"  /  {tabuleiro[9]}   \_____/  {tabuleiro[10]}   \_____/  {tabuleiro[11]}   \\   |", end=f"    \___/ {Direcao1[2][2]} \___/ {Direcao1[2][1]} \___/   |   \___/ {Direcao2[2][1]} \___/ {Direcao2[2][2]} \___/   |   \___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___/        \n")
         print(f"  \       /     \       /     \       /   |", end=f"    / {Direcao1[2][3]} \___/ {Direcao1[2][2]} \___/ {Direcao1[2][1]} \   |   / {Direcao2[2][1]} \___/ {Direcao2[2][2]} \___/ {Direcao2[2][3]} \   |   / {Direcao3[2][0]} \___/ {Direcao3[2][2]} \___/ {Direcao3[2][4]} \        \n")
         print(f"   \_____/  {tabuleiro[12]}   \_____/  {tabuleiro[13]}   \_____/    |", end=f"    \___/ {Direcao1[2][3]} \___/ {Direcao1[2][2]} \___/   |   \___/ {Direcao2[2][2]} \___/ {Direcao2[2][3]} \___/   |   \___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___/        \n")
@@ -75,62 +80,60 @@ def ContraHumano(player):
         
         board()
  
-        jogada = int(input("Escolha onde quer jogar:"))
+        jogada = int(input("\nEscolha onde quer jogar:"))
 
-        while(tabuleiro[jogada-1]=='P' or tabuleiro[jogada-1] == 'B'):
+        while(tabuleiro[jogada-1] == 'A' or tabuleiro[jogada-1] == 'B'):
             jogada = int(input("Local ocupado. Escolha outro lugar:"))
 
         if(player==True):
             if(tabuleiro[jogada-1]>=10):
-                tabuleiro[jogada-1]='B '
+                tabuleiro[jogada-1] = f'{bcolors.B}B{bcolors.RESET} '
             else:
-                tabuleiro[jogada-1]='B'
+                tabuleiro[jogada-1] = f'{bcolors.B}B{bcolors.RESET}'
         else:
-            if(tabuleiro[jogada-1]>=10):
-                tabuleiro[jogada-1]='P '
+            if(tabuleiro[jogada-1] >= 10):
+                tabuleiro[jogada-1] = f'{bcolors.A}A{bcolors.RESET} '
             else:
-                tabuleiro[jogada-1]='P'
+                tabuleiro[jogada-1] = f'{bcolors.A}A{bcolors.RESET}'
 
 def ContaPecas(tuplo):
-    nP=0
+    nA=0
     nB=0
     i=0
     while(i<3):
-        if tabuleiro[tuplo[i]-1]=="B" or tabuleiro[tuplo[i]-1]=="B ":
+        if tabuleiro[tuplo[i]-1] == f'{bcolors.B}B{bcolors.RESET}' or tabuleiro[tuplo[i]-1] == f'{bcolors.B}B{bcolors.RESET} ':
                 nB += 1
-        elif tabuleiro[tuplo[i]-1]=="P" or tabuleiro[tuplo[i]-1]=="P ":
-                nP += 1
+        elif tabuleiro[tuplo[i]-1] == f'{bcolors.A}A{bcolors.RESET}' or tabuleiro[tuplo[i]-1] == f'{bcolors.A}A{bcolors.RESET} ':
+                nA += 1
         i +=  1
 
-    if nP > nB and nP> 1:
-         return 'P'
-    if nP < nB and nB>1:
+    if nA > nB and nA> 1:
+         return 'A'
+    if nA < nB and nB>1:
          return 'B'
     
     return 'X'
 
 def ContaDirecao(direcao):
     i=0
-    dP=0
+    dA=0
     dB=0
 
     while i<5:
         V=ContaPecas(direcao[0][i])
-        if(V=='P'):
-              dP += 1
-              direcao[2][i]='P'
+        if(V=='A'):
+              dA += 1
+              direcao[2][i] = f'{bcolors.A}A{bcolors.RESET}'
         elif(V=='B'):
               dB += 1
-              direcao[2][i]='B'
+              direcao[2][i] = f'{bcolors.B}B{bcolors.RESET}'
         else:
-              direcao[2][i]=' '
+              direcao[2][i] = ' '
         i += 1
 
     direcao[1][0]=dB
-    direcao[1][1]=dP
+    direcao[1][1]=dA
         
-        
-
     
 def main():
     op = menu()
@@ -161,8 +164,6 @@ def main():
     elif(op == 0):
         sair()  
     
-            
-        
-    
+ 
 main()
     
