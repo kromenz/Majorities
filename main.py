@@ -133,8 +133,7 @@ def ContaDirecao(direcao):
 
     direcao[1][0]=dB
     direcao[1][1]=dA
-        
-    
+          
 def main():
     op = menu()
 
@@ -164,6 +163,5 @@ def main():
     elif(op == 0):
         sair()  
     
- 
 main()
     
