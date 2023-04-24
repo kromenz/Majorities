@@ -1,7 +1,7 @@
-from games.connect4.players.greedy import GreedyConnect4Player
-from games.connect4.players.minimax import MinimaxConnect4Player
-from games.connect4.players.random import RandomConnect4Player
-from games.connect4.simulator import Connect4Simulator
+#from games.majorities.players.greedy import GreedyMajoritiesPlayer
+from games.majorities.players.minimax import MinimaxMajoritiesPlayer
+from games.majorities.players.random import RandomMajoritiesPlayer
+from games.majorities.simulator import MajoritiesSimulator
 from games.game_simulator import GameSimulator
 
 def run_simulation(desc: str, simulator: GameSimulator, iterations: int):
@@ -20,38 +20,39 @@ def main():
 
     num_iterations = 1000
 
-    c4_simulations = [
+    mj_simulations = [
         # uncomment to play as human
         #{
-        #    "name": "Connect4 - Human VS Random",
-        #    "player1": HumanConnect4Player("Human"),
-        #    "player2": RandomConnect4Player("Random")
+        #    "name": "Majorities - Human VS Random",
+        #    "player1": HumanMajoritiesPlayer("Human"),
+        #    "player2": RandomMajoritiesPlayer("Random")
         #},
         {
-            "name": "Connect4 - Random VS Random",
-            "player1": RandomConnect4Player("Random 1"),
-            "player2": RandomConnect4Player("Random 2")
+            "name": "Majorities - Random VS Random",
+            "player1": RandomMajoritiesPlayer("Random 1"),
+            "player2": RandomMajoritiesPlayer("Random 2")
         },
-        {
-            "name": "Connect4 - Greedy VS Random",
-            "player1": GreedyConnect4Player("Greedy"),
-            "player2": RandomConnect4Player("Random")
-        },
-        {
-            "name": "Minimax VS Random",
-            "player1": MinimaxConnect4Player("Minimax"),
-            "player2": RandomConnect4Player("Random")
-        },
-        {
-            "name": "Minimax VS Greedy",
-            "player1": MinimaxConnect4Player("Minimax"),
-            "player2": GreedyConnect4Player("Greedy")
-        }
+        #{
+        #    "name": "Majorities - Greedy VS Random",
+        #    "player1": GreedyMajoritiesPlayer("Greedy"),
+        #    "player2": RandomMajoritiesPlayer("Random")
+        #},
+        #{
+        #    "name": "Minimax VS Random",
+        #    "player1": MinimaxMajoritiesPlayer("Minimax"),
+        #    "player2": RandomMajoritiesPlayer("Random")
+        #}
+        #{
+        #    "name": "Minimax VS Greedy",
+        #    "player1": MinimaxMajoritiesPlayer("Minimax"),
+        #    "player2": GreedyMajoritiesPlayer("Greedy")
+        #}
     ]
 
     
-    for sim in c4_simulations:
-        run_simulation(sim["name"], Connect4Simulator(sim["player1"], sim["player2"]), num_iterations)
+    
+    for sim in mj_simulations:
+        run_simulation(sim["name"], MajoritiesSimulator(sim["player1"], sim["player2"]), 1)
 
 if __name__ == "__main__":
     main()

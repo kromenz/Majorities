@@ -1,11 +1,11 @@
 from typing import Optional
 
-from games.connect4.action import Connect4Action
-from games.connect4.result import Connect4Result
+from games.majorities.action import MajoritiesAction
+from games.majorities.result import MajoritiesResult
 from games.state import State
 
 
-class Connect4State(State):
+class MajoritiesState(State):
     EMPTY_CELL = -1
 
     def __init__(self, num_rows: int = 6, num_cols: int = 7):
@@ -25,7 +25,7 @@ class Connect4State(State):
         """
         the grid
         """
-        self.__grid = [[Connect4State.EMPTY_CELL for _i in range(self.__num_cols)] for _j in range(self.__num_rows)]
+        self.__grid = [[MajoritiesState.EMPTY_CELL for _i in range(self.__num_cols)] for _j in range(self.__num_rows)]
 
         """
         counts the number of turns in the current game
@@ -87,7 +87,7 @@ class Connect4State(State):
     def get_num_players(self):
         return 2
 
-    def validate_action(self, action: Connect4Action) -> bool:
+    def validate_action(self, action: MajoritiesAction) -> bool:
         col = action.get_col()
 
         # valid column
@@ -95,12 +95,12 @@ class Connect4State(State):
             return False
 
         # full column
-        if self.__grid[0][col] != Connect4State.EMPTY_CELL:
+        if self.__grid[0][col] != MajoritiesState.EMPTY_CELL:
             return False
 
         return True
 
-    def update(self, action: Connect4Action):
+    def update(self, action: MajoritiesAction):
         col = action.get_col()
 
         # drop the checker
@@ -121,7 +121,7 @@ class Connect4State(State):
         print({
                   0: 'R',
                   1: 'B',
-                  Connect4State.EMPTY_CELL: ' '
+                  MajoritiesState.EMPTY_CELL: ' '
               }[self.__grid[row][col]], end="")
 
     def __display_numbers(self):
@@ -137,6 +137,7 @@ class Connect4State(State):
         print("-")
 
     def display(self):
+        '''
         self.__display_numbers()
         self.__display_separator()
 
@@ -150,6 +151,10 @@ class Connect4State(State):
 
         self.__display_numbers()
         print("")
+        '''
+
+        
+
 
     def __is_full(self):
         return self.__turns_count > (self.__num_cols * self.__num_rows)
@@ -161,7 +166,7 @@ class Connect4State(State):
         return self.__acting_player
 
     def clone(self):
-        cloned_state = Connect4State(self.__num_rows, self.__num_cols)
+        cloned_state = MajoritiesState(self.__num_rows, self.__num_cols)
         cloned_state.__turns_count = self.__turns_count
         cloned_state.__acting_player = self.__acting_player
         cloned_state.__has_winner = self.__has_winner
@@ -170,11 +175,11 @@ class Connect4State(State):
                 cloned_state.__grid[row][col] = self.__grid[row][col]
         return cloned_state
 
-    def get_result(self, pos) -> Optional[Connect4Result]:
+    def get_result(self, pos) -> Optional[MajoritiesResult]:
         if self.__has_winner:
-            return Connect4Result.LOOSE if pos == self.__acting_player else Connect4Result.WIN
+            return MajoritiesResult.LOOSE if pos == self.__acting_player else MajoritiesResult.WIN
         if self.__is_full():
-            return Connect4Result.DRAW
+            return MajoritiesResult.DRAW
         return None
 
     def get_num_rows(self):
@@ -190,7 +195,7 @@ class Connect4State(State):
         return list(filter(
             lambda action: self.validate_action(action),
             map(
-                lambda pos: Connect4Action(pos),
+                lambda pos: MajoritiesAction(pos),
                 range(0, self.get_num_cols()))
         ))
 

@@ -1,18 +1,18 @@
 from random import randint
 
-from games.connect4.action import Connect4Action
-from games.connect4.player import Connect4Player
-from games.connect4.state import Connect4State
+from games.majorities.action import MajoritiesAction
+from games.majorities.player import MajoritiesPlayer
+from games.majorities.state import MajoritiesState
 from games.state import State
 
 
-class RandomConnect4Player(Connect4Player):
+class RandomMajoritiesPlayer(MajoritiesPlayer):
 
     def __init__(self, name):
         super().__init__(name)
 
-    def get_action(self, state: Connect4State):
-        return Connect4Action(randint(0, state.get_num_cols()))
+    def get_action(self, state: MajoritiesState):
+        return MajoritiesAction(randint(0, 15))
 
     def event_action(self, pos: int, action, new_state: State):
         # ignore
