@@ -4,6 +4,25 @@ from games.majorities.action import MajoritiesAction
 from games.majorities.result import MajoritiesResult
 from games.state import State
 
+tabuleiro=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+PecasP= []
+PecasB= []
+
+LinhasDirecao1= [[1,3,5],[2,7,9],[4,6,12], [8,11,14],[10,13,15]]
+PontDirecao1=[0,0]
+VencedorDirecao1=[' ',' ',' ',' ',' ']
+Direcao1=[LinhasDirecao1,PontDirecao1,VencedorDirecao1]
+
+LinhasDirecao2=[[1,2,4],[3,6,8],[5,7,10],[9,11,13],[12,14,15]]
+PontDirecao2=[0,0]
+VencedorDirecao2=[' ',' ',' ',' ',' ']
+Direcao2=[LinhasDirecao2,PontDirecao2,VencedorDirecao2]
+
+LinhasDirecao3=[[4,8,10],[2,6,13],[1,11,15],[3,7,14],[5,9,12]]
+PontDirecao3=[0,0]
+VencedorDirecao3=[' ',' ',' ',' ',' ']
+Direcao3=[LinhasDirecao3,PontDirecao3,VencedorDirecao3]
+
 
 class MajoritiesState(State):
     EMPTY_CELL = -1
@@ -87,21 +106,27 @@ class MajoritiesState(State):
     def get_num_players(self):
         return 2
 
-    def validate_action(self, action: MajoritiesAction) -> bool:
-        col = action.get_col()
+    def validate_action(self, action: MajoritiesAction, x) -> bool:
+        if(x<= 1 or x >= 15):
+            return True
+        if(tabuleiro[x-1] == 'A' or tabuleiro[x-1] == 'B'):
+            return True
 
-        # valid column
-        if col < 0 or col >= self.__num_cols:
-            return False
+        return False
 
-        # full column
-        if self.__grid[0][col] != MajoritiesState.EMPTY_CELL:
-            return False
-
-        return True
-
-    def update(self, action: MajoritiesAction):
-        col = action.get_col()
+    def update(self, action: MajoritiesAction, x, playerV):
+        if(playerV==True):
+            if(int(tabuleiro[x-1])>=10):
+                tabuleiro[x-1] = f'B '
+            else:
+                tabuleiro[x-1] = f'B'
+        else:
+            if(tabuleiro[x-1] >= 10):
+                tabuleiro[x-1] = f'A '
+            else:
+                tabuleiro[x-1] = f'A'
+        '''
+        action.get_col()
 
         # drop the checker
         for row in range(self.__num_rows - 1, -1, -1):
@@ -116,46 +141,33 @@ class MajoritiesState(State):
         self.__acting_player = 1 if self.__acting_player == 0 else 0
 
         self.__turns_count += 1
-
-    def __display_cell(self, row, col):
-        print({
-                  0: 'R',
-                  1: 'B',
-                  MajoritiesState.EMPTY_CELL: ' '
-              }[self.__grid[row][col]], end="")
-
-    def __display_numbers(self):
-        for col in range(0, self.__num_cols):
-            if col < 10:
-                print(' ', end="")
-            print(col, end="")
-        print("")
-
-    def __display_separator(self):
-        for col in range(0, self.__num_cols):
-            print("--", end="")
-        print("-")
-
-    def display(self):
         '''
-        self.__display_numbers()
-        self.__display_separator()
 
-        for row in range(0, self.__num_rows):
-            print('|', end="")
-            for col in range(0, self.__num_cols):
-                self.__display_cell(row, col)
-                print('|', end="")
-            print("")
-            self.__display_separator()
+    def board():
+        print(f"                  _____                   |", end="     \n")
+        print(f"                 /     \\                  |", end="     \n")
+        print(f"           _____/   {tabuleiro[0]}   \\_____            |", end="     \n")
+        print(f"          /     \       /     \\           |", end="     \n")
+        print(f"    _____/   {tabuleiro[1]}   \_____/   {tabuleiro[2]}   \\_____     |", end="     \n")
+        print(f"   /     \       /     \       /     \\    |", end="     \n")
+        print(f"  /   {tabuleiro[3]}   \_____/       \_____/   {tabuleiro[4]}   \\   |", end="     \n")
+        print(f"  \       /     \       /     \       /   |", end="     \n")
+        print(f"   \_____/   {tabuleiro[5]}   \     /   {tabuleiro[6]}   \_____/    |", end="     \n")
+        print(f"   /     \       /     \       /     \\    |", end=f"            {Direcao1[1][0]} - {Direcao1[1][1]}           |           {Direcao2[1][0]} - {Direcao2[1][1]}           |           {Direcao3[1][0]} - {Direcao3[1][1]}     \n")
+        print(f"  /   {tabuleiro[7]}   \_____/       \_____/   {tabuleiro[8]}   \\   |", end=f"             ___            |            ___            |            ___                 \n")
+        print(f"  \       /                   \       /   |", end=f"         ___/ {Direcao1[2][0]} \___        |        ___/ {Direcao2[2][0]} \___        |        ___/ {Direcao3[2][2]} \___             \n")
+        print(f"   \_____/        _____        \_____/    |", end=f"     ___/ {Direcao1[2][1]} \___/ {Direcao1[2][0]} \___    |    ___/ {Direcao2[2][0]} \___/ {Direcao2[2][1]} \___    |    ___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___         \n")
+        print(f"   /     \       /     \       /     \\    |", end=f"    / {Direcao1[2][2]} \___/ {Direcao1[2][1]} \___/ {Direcao1[2][0]} \   |   / {Direcao2[2][0]} \___/ {Direcao2[2][1]} \___/ {Direcao2[2][2]} \   |   / {Direcao3[2][0]} \___/ {Direcao3[2][2]} \___/ {Direcao3[2][4]} \        \n")
+        print(f"  /  {tabuleiro[9]}   \_____/  {tabuleiro[10]}   \_____/  {tabuleiro[11]}   \\   |", end=f"    \___/ {Direcao1[2][2]} \___/ {Direcao1[2][1]} \___/   |   \___/ {Direcao2[2][1]} \___/ {Direcao2[2][2]} \___/   |   \___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___/        \n")
+        print(f"  \       /     \       /     \       /   |", end=f"    / {Direcao1[2][3]} \___/ {Direcao1[2][2]} \___/ {Direcao1[2][1]} \   |   / {Direcao2[2][1]} \___/ {Direcao2[2][2]} \___/ {Direcao2[2][3]} \   |   / {Direcao3[2][0]} \___/ {Direcao3[2][2]} \___/ {Direcao3[2][4]} \        \n")
+        print(f"   \_____/  {tabuleiro[12]}   \_____/  {tabuleiro[13]}   \_____/    |", end=f"    \___/ {Direcao1[2][3]} \___/ {Direcao1[2][2]} \___/   |   \___/ {Direcao2[2][2]} \___/ {Direcao2[2][3]} \___/   |   \___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___/        \n")
+        print(f"         \       /     \       /          |", end=f"    / {Direcao1[2][4]} \___/ {Direcao1[2][3]} \___/ {Direcao1[2][2]} \   |   / {Direcao2[2][2]} \___/ {Direcao2[2][3]} \___/ {Direcao2[2][4]} \   |   / {Direcao3[2][0]} \___/ {Direcao3[2][2]} \___/ {Direcao3[2][4]} \        \n")
+        print(f"          \_____/  {tabuleiro[14]}   \_____/           |", end=f"    \___/ {Direcao1[2][4]} \___/ {Direcao1[2][3]} \___/   |   \___/ {Direcao2[2][3]} \___/ {Direcao2[2][4]} \___/   |   \___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___/        \n")
+        print(f"                \       /                 |", end=f"        \___/ {Direcao1[2][4]} \___/       |       \___/ {Direcao2[2][4]} \___/       |       \___/ {Direcao3[2][2]} \___/            \n")
+        print(f"                 \_____/                  |", end=f"            \___/           |           \___/           |           \___/                \n")
 
-        self.__display_numbers()
-        print("")
-        '''
 
         
-
-
     def __is_full(self):
         return self.__turns_count > (self.__num_cols * self.__num_rows)
 

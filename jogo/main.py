@@ -1,6 +1,8 @@
 from games.majorities.players.minimax import MinimaxMajoritiesPlayer
 from games.majorities.players.random import RandomMajoritiesPlayer
+from games.majorities.players.humano import HumanoMajoritiesPlayer
 from games.majorities.simulator import MajoritiesSimulator
+from games.majorities.state import MajoritiesState
 from games.game_simulator import GameSimulator
 
 def run_simulation(desc: str, simulator: GameSimulator, iterations: int):
@@ -12,6 +14,9 @@ def run_simulation(desc: str, simulator: GameSimulator, iterations: int):
 
     print("Results for the game:")
     simulator.print_stats()
+
+            
+
 
 def menu():
     op = -1
@@ -41,9 +46,14 @@ def main():
 
     if(op == 1):
         end=0
-        player = True
-        p1 = input("\n\tIntroduza o nome do Player 1: ")
-        p2 = input("\n\tIntroduza o nome do Player 2: ")
+        playerV = True
+        sim_name = "\n\tMajorities - Humano vs Humano"
+        p1 = input("\n\tIntroduza o nome do player1: ")
+        p2 = input("\n\tIntroduza o nome do player2: ")
+        HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+        HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV)
+        
+        '''
         while( end == 0):
             print("\n\t\t" + p1 + " vs " + p2)
             ContraHumano(player)
@@ -55,7 +65,8 @@ def main():
             ContaDirecao(Direcao2)
             ContaDirecao(Direcao3)
             ContraHumano(player)
-
+        '''
+        
     elif(op == 2):
         print("\n\t Humano vs Minimax")
             
@@ -67,38 +78,16 @@ def main():
     
     
     mj_simulations = [
-        # uncomment to play as human
-        #{
-        #    "name": "Majorities - Human VS Random",
-        #    "player1": HumanMajoritiesPlayer("Human"),
-        #    "player2": RandomMajoritiesPlayer("Random")
-        #},
         {
-            "name": "Majorities - Random VS Random",
-            "player1": RandomMajoritiesPlayer("Random 1"),
-            "player2": RandomMajoritiesPlayer("Random 2")
+            "name": sim_name,
+            "player1": HumanoMajoritiesPlayer(p1),
+            "player2": HumanoMajoritiesPlayer(p2)
         },
-        #{
-        #    "name": "Majorities - Greedy VS Random",
-        #    "player1": GreedyMajoritiesPlayer("Greedy"),
-        #    "player2": RandomMajoritiesPlayer("Random")
-        #},
-        #{
-        #    "name": "Minimax VS Random",
-        #    "player1": MinimaxMajoritiesPlayer("Minimax"),
-        #    "player2": RandomMajoritiesPlayer("Random")
-        #}
-        #{
-        #    "name": "Minimax VS Greedy",
-        #    "player1": MinimaxMajoritiesPlayer("Minimax"),
-        #    "player2": GreedyMajoritiesPlayer("Greedy")
-        #}
     ]
 
-    
-    
     for sim in mj_simulations:
         run_simulation(sim["name"], MajoritiesSimulator(sim["player1"], sim["player2"]), 1)
+    
 
 if __name__ == "__main__":
     main()
