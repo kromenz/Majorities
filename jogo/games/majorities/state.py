@@ -4,6 +4,8 @@ from games.majorities.action import MajoritiesAction
 from games.majorities.result import MajoritiesResult
 from games.state import State
 
+
+
 tabuleiro=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 PecasP= []
 PecasB= []
@@ -23,28 +25,17 @@ PontDirecao3=[0,0]
 VencedorDirecao3=[' ',' ',' ',' ',' ']
 Direcao3=[LinhasDirecao3,PontDirecao3,VencedorDirecao3]
 
+class bcolors:
+    B = '\033[96m' #BLUE
+    A = '\033[91m' #RED
+    RESET = '\033[0m' #RESET COLOR
 
 class MajoritiesState(State):
+    
     EMPTY_CELL = -1
 
     def __init__(self, num_rows: int = 6, num_cols: int = 7):
         super().__init__()
-
-        if num_rows < 4:
-            raise Exception("the number of rows must be 4 or over")
-        if num_cols < 4:
-            raise Exception("the number of cols must be 4 or over")
-
-        """
-        the dimensions of the board
-        """
-        self.__num_rows = num_rows
-        self.__num_cols = num_cols
-
-        """
-        the grid
-        """
-        self.__grid = [[MajoritiesState.EMPTY_CELL for _i in range(self.__num_cols)] for _j in range(self.__num_rows)]
 
         """
         counts the number of turns in the current game
@@ -61,70 +52,126 @@ class MajoritiesState(State):
         """
         self.__has_winner = False
 
-    def __check_winner(self, player):
-        # check for 4 across
-        for row in range(0, self.__num_rows):
-            for col in range(0, self.__num_cols - 3):
-                if self.__grid[row][col] == player and \
-                        self.__grid[row][col + 1] == player and \
-                        self.__grid[row][col + 2] == player and \
-                        self.__grid[row][col + 3] == player:
-                    return True
+    def check_winner(self):
 
-        # check for 4 up and down
-        for row in range(0, self.__num_rows - 3):
-            for col in range(0, self.__num_cols):
-                if self.__grid[row][col] == player and \
-                        self.__grid[row + 1][col] == player and \
-                        self.__grid[row + 2][col] == player and \
-                        self.__grid[row + 3][col] == player:
-                    return True
+        Vencedorp1 = 0
+        Vencedorp2 = 0
 
-        # check upward diagonal
-        for row in range(3, self.__num_rows):
-            for col in range(0, self.__num_cols - 3):
-                if self.__grid[row][col] == player and \
-                        self.__grid[row - 1][col + 1] == player and \
-                        self.__grid[row - 2][col + 2] == player and \
-                        self.__grid[row - 3][col + 3] == player:
-                    return True
+        if(PontDirecao1[0] == 3):
+            Vencedorp1 += 1
+        if(PontDirecao1[1] == 3):
+            Vencedorp2 += 1
 
-        # check downward diagonal
-        for row in range(0, self.__num_rows - 3):
-            for col in range(0, self.__num_cols - 3):
-                if self.__grid[row][col] == player and \
-                        self.__grid[row + 1][col + 1] == player and \
-                        self.__grid[row + 2][col + 2] == player and \
-                        self.__grid[row + 3][col + 3] == player:
-                    return True
+        if(PontDirecao2[0] == 3):
+            Vencedorp1 += 1
+        if(PontDirecao2[1] == 3):
+            Vencedorp2 += 1
 
-        return False
+        if(PontDirecao3[0] == 3):
+            Vencedorp1 += 1
+        if(PontDirecao3[1] == 3):
+            Vencedorp2 += 1
 
-    def get_grid(self):
-        return self.__grid
+        if Vencedorp1 >= 2:
+            return 1
+        if Vencedorp2 >= 3:
+            return 2
+        
+        pecastabuleiro=0
+        for i in tabuleiro:
+            if(i == '{bcolors.A}A{bcolors.RESET}' or i == '{bcolors.B}B{bcolors.RESET}' or i == '{bcolors.A}A{bcolors.RESET} ' or i == '{bcolors.B}B{bcolors.RESET} '):
+                pecastabuleiro += 0
+
+        if pecastabuleiro == 15:
+            Vencedorp1 = 0
+            Vencedorp2 = 0
+            if(PontDirecao1[0] > PontDirecao1[1]):
+                Vencedorp1 += 1
+            else:
+                Vencedorp2 += 1
+
+            if(PontDirecao2[0] > PontDirecao2[1]):
+                Vencedorp1 += 1
+            else:
+                Vencedorp2 += 1
+
+            if(PontDirecao3[0] > PontDirecao3[1]):
+                Vencedorp1 += 1
+            else:
+                Vencedorp2 += 1
+
+            if(Vencedorp1>Vencedorp2):
+                return 1
+            else:
+                return 2
+
+        return 0
 
     def get_num_players(self):
         return 2
-
+    
     def validate_action(self, action: MajoritiesAction, x) -> bool:
-        if(x<= 1 or x >= 15):
+        if(x< 1 or x > 15):
             return True
         if(tabuleiro[x-1] == 'A' or tabuleiro[x-1] == 'B'):
             return True
 
         return False
 
-    def update(self, action: MajoritiesAction, x, playerV):
+    def ContaPecas(self, tuplo):
+        nA=0
+        nB=0
+        i=0
+        while(i<3):
+            if tabuleiro[tuplo[i]-1] == f'{bcolors.B}B{bcolors.RESET}' or tabuleiro[tuplo[i]-1] == f'{bcolors.B}B{bcolors.RESET} ':
+                    nB += 1
+            elif tabuleiro[tuplo[i]-1] == f'{bcolors.A}A{bcolors.RESET}' or tabuleiro[tuplo[i]-1] == f'{bcolors.A}A{bcolors.RESET} ':
+                    nA += 1
+            i +=  1
+
+        if nA > nB and nA> 1:
+            return 'A'
+        if nA < nB and nB>1:
+            return 'B'
+        
+        return 'X'
+    
+    def ContaDirecao(self, direcao, state):
+        i=0
+        dA=0
+        dB=0
+
+        while i<5:
+            V = state.ContaPecas(self, direcao[0][i])
+            if(V=='A'):
+                dA += 1
+                direcao[2][i] = f'{bcolors.A}A{bcolors.RESET}'
+            elif(V=='B'):
+                dB += 1
+                direcao[2][i] = f'{bcolors.B}B{bcolors.RESET}'
+            else:
+                direcao[2][i] = ' '
+            i += 1
+
+        direcao[1][0]=dB
+        direcao[1][1]=dA
+
+    def update(self, state, x, playerV):
         if(playerV==True):
             if(int(tabuleiro[x-1])>=10):
-                tabuleiro[x-1] = f'B '
+                tabuleiro[x-1] = f'{bcolors.B}B{bcolors.RESET} '
             else:
-                tabuleiro[x-1] = f'B'
+                tabuleiro[x-1] = f'{bcolors.B}B{bcolors.RESET}'
         else:
             if(tabuleiro[x-1] >= 10):
-                tabuleiro[x-1] = f'A '
+                tabuleiro[x-1] = f'{bcolors.A}A{bcolors.RESET} '
             else:
-                tabuleiro[x-1] = f'A'
+                tabuleiro[x-1] = f'{bcolors.A}A{bcolors.RESET}'
+        
+        state.ContaDirecao(self, Direcao1,state)
+        state.ContaDirecao(self, Direcao2,state)
+        state.ContaDirecao(self, Direcao3,state)
+        
         '''
         action.get_col()
 

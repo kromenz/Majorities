@@ -21,7 +21,7 @@ def run_simulation(desc: str, simulator: GameSimulator, iterations: int):
 def menu():
     op = -1
     while op not in [0,1,2,3]:
-        print("-----------------------------------------")
+        print("\n-----------------------------------------")
         print("|\tBem vindo ao Majorities!\t|")
         print("-----------------------------------------")
         print("|\t1. Jogar contra Humano \t\t|")
@@ -45,14 +45,48 @@ def main():
     num_iterations = 1000
 
     if(op == 1):
-        end=0
+        end = 0
         playerV = True
         sim_name = "\n\tMajorities - Humano vs Humano"
-        p1 = input("\n\tIntroduza o nome do player1: ")
-        p2 = input("\n\tIntroduza o nome do player2: ")
-        HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
-        HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV)
-        
+        p1 = input("\n\tIntroduza o nome do Player 1: ")
+        p2 = input("\n\tIntroduza o nome do Player 2: ")
+        print("\n-------------------------------------------------")
+        print(f"|\tMajorities - {p1.center(10)} VS {p2.center(10)}\t|")
+        print("-------------------------------------------------")
+
+        end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+        playerV = False
+        while end == 0 :
+            print("\n-------------------------------------------------")
+            print(f"|\tMajorities - {p1.center(10)} VS {p2.center(10)}\t|")
+            print("-------------------------------------------------")
+            end=HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV)
+            print("\n-------------------------------------------------")
+            print(f"|\tMajorities - {p1.center(10)} VS {p2.center(10)}\t|")
+            print("-------------------------------------------------")
+            end=HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV)
+            if(end!=0):
+                break
+            playerV = True
+            print("\n-------------------------------------------------")
+            print(f"|\tMajorities - {p1.center(10)} VS {p2.center(10)}\t|")
+            print("-------------------------------------------------")
+            end=HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+            print("\n-------------------------------------------------")
+            print(f"|\tMajorities - {p1.center(10)} VS {p2.center(10)}\t|")
+            print("-------------------------------------------------")
+            end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+            if(end!=0):
+                break
+            playerV = False
+        if end==1:
+            print("\n-----------------------------------------")
+            print(f"\tVencedor - {p1.center(10)}\t\t|")
+            print("-----------------------------------------")
+        else:
+            print("\n-----------------------------------------")
+            print(f"\tVencedor - {p2.center(10)}\t\t|")
+            print("-----------------------------------------")
         '''
         while( end == 0):
             print("\n\t\t" + p1 + " vs " + p2)

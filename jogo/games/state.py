@@ -3,6 +3,10 @@ from abc import ABC, abstractmethod
 
 class State(ABC):
 
+    @abstractmethod
+    def check_winner(self):
+        pass
+
     """
     Retrieve the number of players
     """
@@ -17,6 +21,14 @@ class State(ABC):
     """
     @abstractmethod
     def validate_action(self, action) -> bool:
+        pass
+
+    @abstractmethod
+    def ContaPecas(self, direcao) -> str:
+        pass
+
+    @abstractmethod
+    def ContaDirecao(self, direcao):
         pass
 
     """

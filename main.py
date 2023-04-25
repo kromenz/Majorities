@@ -115,7 +115,7 @@ def ContaPecas(tuplo):
     return 'X'
 
 def ContaDirecao(direcao):
-    i=
+    i=0
     dA=0
     dB=0
 
