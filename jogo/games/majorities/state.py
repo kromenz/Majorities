@@ -100,7 +100,7 @@ class MajoritiesState(State):
             else:
                 Vencedorp2 += 1
 
-            if(Vencedorp1>Vencedorp2):
+            if(Vencedorp1 > Vencedorp2):
                 return 1
             else:
                 return 2

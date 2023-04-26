@@ -76,7 +76,7 @@ def main():
             print(f"|\tMajorities - {p1.center(10)} VS {p2.center(10)}\t|")
             print("-------------------------------------------------")
             end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
-            if(end!=0):
+            if(end != 0):
                 break
             playerV = False
         if end == 1:
@@ -87,6 +87,7 @@ def main():
             print("\n-----------------------------------------")
             print(f"\tVencedor - {p2.center(10)}\t\t|")
             print("-----------------------------------------")
+             
         '''
         while( end == 0):
             print("\n\t\t" + p1 + " vs " + p2)
