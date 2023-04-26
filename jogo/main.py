@@ -60,18 +60,18 @@ def main():
             print("\n-------------------------------------------------")
             print(f"|\tMajorities - {p1.center(10)} VS {p2.center(10)}\t|")
             print("-------------------------------------------------")
-            end=HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV)
+            end = HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV)
             print("\n-------------------------------------------------")
             print(f"|\tMajorities - {p1.center(10)} VS {p2.center(10)}\t|")
             print("-------------------------------------------------")
-            end=HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV)
+            end = HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV)
             if(end!=0):
                 break
             playerV = True
             print("\n-------------------------------------------------")
             print(f"|\tMajorities - {p1.center(10)} VS {p2.center(10)}\t|")
             print("-------------------------------------------------")
-            end=HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+            end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
             print("\n-------------------------------------------------")
             print(f"|\tMajorities - {p1.center(10)} VS {p2.center(10)}\t|")
             print("-------------------------------------------------")
@@ -79,7 +79,7 @@ def main():
             if(end!=0):
                 break
             playerV = False
-        if end==1:
+        if end == 1:
             print("\n-----------------------------------------")
             print(f"\tVencedor - {p1.center(10)}\t\t|")
             print("-----------------------------------------")
