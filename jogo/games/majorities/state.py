@@ -77,10 +77,10 @@ class MajoritiesState(State):
         if Vencedorp2 >= 3:
             return 2
         
-        pecastabuleiro=0
+        pecastabuleiro = 0
         for i in tabuleiro:
-            if(i == '{bcolors.A}A{bcolors.RESET}' or i == '{bcolors.B}B{bcolors.RESET}' or i == '{bcolors.A}A{bcolors.RESET} ' or i == '{bcolors.B}B{bcolors.RESET} '):
-                pecastabuleiro += 0
+            if(i == f'{bcolors.A}A{bcolors.RESET}' or i == f'{bcolors.B}B{bcolors.RESET}' or i == f'{bcolors.A}A{bcolors.RESET} ' or i == f'{bcolors.B}B{bcolors.RESET} '):
+                pecastabuleiro += 1
 
         if pecastabuleiro == 15:
             Vencedorp1 = 0
@@ -113,7 +113,7 @@ class MajoritiesState(State):
     def validate_action(self, action: MajoritiesAction, x) -> bool:
         if(x< 1 or x > 15):
             return True
-        if(tabuleiro[x-1] == 'A' or tabuleiro[x-1] == 'B'):
+        if(tabuleiro[x-1] == f'{bcolors.A}A{bcolors.RESET}' or tabuleiro[x-1] == f'{bcolors.B}B{bcolors.RESET}' or tabuleiro[x-1] == f'{bcolors.A}A{bcolors.RESET} ' or tabuleiro[x-1] == f'{bcolors.B}B{bcolors.RESET} '):
             return True
 
         return False
@@ -163,7 +163,7 @@ class MajoritiesState(State):
             else:
                 tabuleiro[x-1] = f'{bcolors.B}B{bcolors.RESET}'
         else:
-            if(tabuleiro[x-1] >= 10):
+            if(int(tabuleiro[x-1]) >= 10):
                 tabuleiro[x-1] = f'{bcolors.A}A{bcolors.RESET} '
             else:
                 tabuleiro[x-1] = f'{bcolors.A}A{bcolors.RESET}'

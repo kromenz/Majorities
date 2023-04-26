@@ -24,7 +24,11 @@ class HumanoMajoritiesPlayer(MajoritiesPlayer):
                 z=state.validate_action(self,MajoritiesAction,jogada)
         
         state.update(self,state,jogada,playerV)
-        return state.check_winner(self)
+        if(int(state.check_winner(self) != 0)):
+            state.board()
+
+        
+        return int(state.check_winner(self))
 
 
     
