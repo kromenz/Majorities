@@ -4,6 +4,10 @@ from games.majorities.players.humano import HumanoMajoritiesPlayer
 from games.majorities.simulator import MajoritiesSimulator
 from games.majorities.state import MajoritiesState
 from games.game_simulator import GameSimulator
+import time
+import os
+
+ops = [0,1,2,3,4,5]
 
 def run_simulation(desc: str, simulator: GameSimulator, iterations: int):
     print(f"----- {desc} -----")
@@ -15,12 +19,59 @@ def run_simulation(desc: str, simulator: GameSimulator, iterations: int):
     print("Results for the game:")
     simulator.print_stats()
 
-            
+# Limpar o terminal
+def clear():
+    if os.name == 'nt':  # Windows
+        os.system('cls')
+    else:  # Unix (Linux, macOS)
+        os.system('clear')
+
+def sair():
+    clear()
+    print("\n---------------------------------------------------")
+    print("\tObrigado por ter jogado o Majorities!\t")
+    print("---------------------------------------------------")
+    time.sleep(5)  #delay
+    clear()
+    exit()  #kill programm
+    
+
+def regras():
+    print("\n-------------------------------------------------------------------------------------------------")
+    print("\t\t\t\tRegras do Majorities!\t\t")
+    print("-------------------------------------------------------------------------------------------------")
+    print("|\tO jogo Majorities é jogado por dois jogadores, cada um com um conjunto de peças.\t|")
+    print("|\tO objetivo é conseguir:\t\t\t\t\t\t\t\t\t|")
+    print("|\t1. Controlar a maioria dos espaços numa linha para ganhar a linha.\t\t\t|")
+    print("|\t2. Controlar the maioria das linhas paralelas para ganhar a direção.\t\t\t|")
+    print("|\t3. Controlar a maioria das três direções para ganhar o jogo.\t\t\t\t|")
+    print("-------------------------------------------------------------------------------------------------")
+    print("\t\t\t\tIntruções do Majorities!\t\t")
+    print("-------------------------------------------------------------------------------------------------")
+    print("|\t1. Para jogar basta selecionar uma opção no menu.\t\t\t\t\t|")
+    print("|\t2. De seguida, selecionar uma posição onde quer colocar a sua peça.\t\t\t|")
+    print("|\t3.O jogo termina quando não há mais espaços livres no tabuleiro ou quando\t\t|")
+    print("|\tum dos jogadores ganhar a maior parte das direções.\t\t\t\t\t|")
+    print("-------------------------------------------------------------------------------------------------\n")
+    
+    
+    # Espera por input
+    while True:
+        try:
+            op = int(input("\n\tSelecione '0' e 'ENTER', para voltar atrás: "))
+            if op == 0:
+                break
+            else:
+                print("Opção inválida. Digite '0' para voltar ao menu principal.")
+        except ValueError:
+            print("Opção inválida. Digite '0' para voltar ao menu principal.")
+
+    clear()
 
 
 def menu():
     op = -1
-    while op not in [0,1,2,3,4]:
+    while op not in ops:
         print("\n-----------------------------------------")
         print("|\tBem vindo ao Majorities!\t|")
         print("-----------------------------------------")
@@ -32,10 +83,12 @@ def menu():
         print("\n")
         print("|\t4. Jogar Humano contra Random \t|")
         print("\n")
+        print("|\t5. Regras do jogo \t\t|")
+        print("\n")
         print("|\t0. Sair \t\t\t|")
         print("-----------------------------------------")
         op = int(input("\n\tOpção: ")) 
-        if op not in [0,1,2,3,4]:
+        if op not in ops:
              print("\n\tInsira um valor entre 0 e 4...")
 
     return op
@@ -159,6 +212,17 @@ def main():
                 print("\n-----------------------------------------")
                 print(f"\tVencedor - Random")
                 print("-----------------------------------------")  
+
+            jogar_novamente = input("\nDeseja jogar novamente? (S/N) ")
+
+            if jogar_novamente.lower() == "s":
+                continue  # começa o loop novamente
+            if jogar_novamente.lower() == "n":
+                print("\n\tObrigado por ter jogado, volte sempre!")
+                break  # interrompe o loop e sai do programa
+        elif(op == 5):
+            regras()
+            
             
         elif(op == 0):
             sair()
