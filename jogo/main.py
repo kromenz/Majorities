@@ -1,4 +1,5 @@
 from games.majorities.players.minimax import MinimaxMajoritiesPlayer
+from games.majorities.players.greedy import GreedyMajoritiesPlayer
 from games.majorities.players.random import RandomMajoritiesPlayer
 from games.majorities.players.humano import HumanoMajoritiesPlayer
 from games.majorities.simulator import MajoritiesSimulator
@@ -67,7 +68,7 @@ def menu():
         print("-----------------------------------------")
         print("|\t1. Jogar contra Humano \t\t|")
         print("\n")
-        print("|\t2. Jogar contra Minimax \t|")
+        print("|\t2. Jogar contra Greedy \t\t|")
         print("\n")
         print("|\t3. Jogar Minimax contra Random \t|")
         print("\n")
@@ -162,7 +163,50 @@ def main():
             '''
             
         elif(op == 2):
-            print("\n\t Humano vs Minimax")
+            print("\n\t Humano vs Greedy")
+            end = 0
+            playerV = True
+            p1 = input("\n\tIntroduza o nome do Player 1: ")
+            print("\n------------------------------------------------------------------")
+            print(f"\t\tMajorities - {p1.center(10)} VS Greedy")
+            print("------------------------------------------------------------------")
+
+            end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+            playerV = False
+            while end == 0 :
+                end = int(GreedyMajoritiesPlayer("Greedy").get_action(MajoritiesState,playerV))
+                if(end!=0):
+                    break
+                playerV = True
+                print("\n------------------------------------------------------------------")
+                print(f"\tMajorities - {p1.center(10)} VS Greedy")
+                print("------------------------------------------------------------------\n")
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                print("\n------------------------------------------------------------------")
+                print(f"\tMajorities - {p1.center(10)} VS Greedy")
+                print("------------------------------------------------------------------\n")
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                if(end != 0):
+                    break
+                playerV = False
+                
+            if end == 1:
+                print("\n-----------------------------------------")
+                print(f"\tVencedor - {p1.center(10)}\t\t")
+                print("-----------------------------------------\n")
+                
+            else:
+                print("\n-----------------------------------------")
+                print(f"\tVencedor - Random")
+                print("-----------------------------------------")  
+
+            jogar_novamente = input("\nDeseja jogar novamente? (S/N) ")
+
+            if jogar_novamente.lower() == "s":
+                continue  # começa o loop novamente
+            if jogar_novamente.lower() == "n":
+                print("\n\tObrigado por ter jogado, volte sempre!")
+                break  # interrompe o loop e sai do programa
                 
         elif(op == 3):
             print("\n\t Minimax vs Rando")

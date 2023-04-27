@@ -227,8 +227,52 @@ class MajoritiesState(State):
         actions = []
         for i in tabuleiro:
             if i not in [f'{bcolors.B}B{bcolors.RESET}', f'{bcolors.B}B{bcolors.RESET} ', f'{bcolors.A}A{bcolors.RESET}', f'{bcolors.A}A{bcolors.RESET} ']:
-                actions.append(i+1) # Adiciona a posição não ocupada ao array
+                actions.append(i) # Adiciona a posição não ocupada ao array
         return actions
+    
+    def bestplay(self,state, action, action2,playerV):
+        if(playerV==True):
+            if(int(tabuleiro[action-1])>=10):
+                tabuleiro[action-1] = f'{bcolors.B}B{bcolors.RESET} '
+            else:
+                tabuleiro[action-1] = f'{bcolors.B}B{bcolors.RESET}'
+        else:
+            if(int(tabuleiro[action-1]) >= 10):
+                tabuleiro[action-1] = f'{bcolors.A}A{bcolors.RESET} '
+            else:
+                tabuleiro[action-1] = f'{bcolors.A}A{bcolors.RESET}'
+        
+        if(playerV==True):
+            if(int(tabuleiro[action2-1])>=10):
+                tabuleiro[action2-1] = f'{bcolors.B}B{bcolors.RESET} '
+            else:
+                tabuleiro[action2-1] = f'{bcolors.B}B{bcolors.RESET}'
+        else:
+            if(int(tabuleiro[action2-1]) >= 10):
+                tabuleiro[action2-1] = f'{bcolors.A}A{bcolors.RESET} '
+            else:
+                tabuleiro[action2-1] = f'{bcolors.A}A{bcolors.RESET}'
+
+        state.ContaDirecao(self, Direcao1,state)
+        state.ContaDirecao(self, Direcao2,state)
+        state.ContaDirecao(self, Direcao3,state)
+
+        
+
+        score=0
+        if(playerV==True):
+            score=(PontDirecao1[0]-PontDirecao1[1])+(PontDirecao2[0]-PontDirecao2[1])+(PontDirecao3[0]-PontDirecao3[1])
+        else:
+            score=(PontDirecao1[1]-PontDirecao1[0])+(PontDirecao2[1]-PontDirecao2[0])+(PontDirecao3[1]-PontDirecao3[0])
+        
+        tabuleiro[action-1]=action
+        tabuleiro[action2-1]=action2
+
+        state.ContaDirecao(self, Direcao1,state)
+        state.ContaDirecao(self, Direcao2,state)
+        state.ContaDirecao(self, Direcao3,state)
+
+        return score
     
     def __is_full(self):
         return self.__turns_count > (self.__num_cols * self.__num_rows)
