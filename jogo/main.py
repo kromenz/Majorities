@@ -70,9 +70,9 @@ def menu():
         print("\n")
         print("|\t2. Jogar contra Greedy \t\t|")
         print("\n")
-        print("|\t3. Jogar Minimax contra Random \t|")
+        print("|\t3. Jogar contra Random \t\t|")
         print("\n")
-        print("|\t4. Jogar Humano contra Random \t|")
+        print("|\t4. Jogar Minimax contra Random \t|")
         print("\n")
         print("|\t5. Regras do jogo \t\t|")
         print("\n")
@@ -95,7 +95,7 @@ def main():
         if(op == 1):
             end = 0
             playerV = True
-            sim_name = "\n\tMajorities - Humano vs Humano"
+            sim_name = "Majorities - Humano vs Humano"
             p1 = input("\n\tIntroduza o nome do Player 1: ")
             p2 = input("\n\tIntroduza o nome do Player 2: ")
             clear()
@@ -148,20 +148,6 @@ def main():
                 print("\n\tObrigado por ter jogado, volte sempre!")
                 break  # interrompe o loop e sai do programa
             
-            '''
-            while( end == 0):
-                print("\n\t\t" + p1 + " vs " + p2)
-                ContraHumano(player)
-                if(player==True):
-                    player=False
-                else:
-                    player=True
-                ContaDirecao(Direcao1)
-                ContaDirecao(Direcao2)
-                ContaDirecao(Direcao3)
-                ContraHumano(player)
-            '''
-            
         elif(op == 2):
             print("\n\t Humano vs Greedy")
             end = 0
@@ -197,7 +183,7 @@ def main():
                 
             else:
                 print("\n-----------------------------------------")
-                print(f"\tVencedor - Random")
+                print(f"\tVencedor - Greedy")
                 print("-----------------------------------------")  
 
             jogar_novamente = input("\nDeseja jogar novamente? (S/N) ")
@@ -207,11 +193,8 @@ def main():
             if jogar_novamente.lower() == "n":
                 print("\n\tObrigado por ter jogado, volte sempre!")
                 break  # interrompe o loop e sai do programa
-                
+        
         elif(op == 3):
-            print("\n\t Minimax vs Rando")
-
-        elif(op == 4):
             end = 0
             playerV = True
             p1 = input("\n\tIntroduza o nome do Player 1: ")
@@ -256,6 +239,10 @@ def main():
             if jogar_novamente.lower() == "n":
                 print("\n\tObrigado por ter jogado, volte sempre!")
                 break  # interrompe o loop e sai do programa
+        
+        elif(op == 4):
+            print("\n\t Minimax vs Rando")
+
         elif(op == 5):
             regras()
             
