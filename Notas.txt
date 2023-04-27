@@ -81,21 +81,23 @@
 
 
                      
-'      {tabuleiro5[0]} |'
-'      {tabuleiro5[1]} {tabuleiro5[2]} |'
-'      {tabuleiro5[3]} {tabuleiro5[4]} |'
-'      {tabuleiro5[5]} {tabuleiro5[6]} {tabuleiro5[7]} {tabuleiro5[8]} |'
-'      {tabuleiro5[9]} {tabuleiro5[10]} {tabuleiro5[11]} {tabuleiro5[12]} {tabuleiro5[13]} |'
-'      {tabuleiro5[14]} {tabuleiro5[15]} {tabuleiro5[16]} {tabuleiro5[17]} |'
-'      {tabuleiro5[18]} {tabuleiro5[19]} {tabuleiro5[20]} {tabuleiro5[21]} |'
-'      {tabuleiro5[22]} {tabuleiro5[23]} {tabuleiro5[24]} {tabuleiro5[25]} |'
-'      {tabuleiro5[26]} {tabuleiro5[27]} {tabuleiro5[28]} {tabuleiro5[29]} {tabuleiro5[30]} |'
-'      {tabuleiro5[31]} {tabuleiro5[32]} |'
-'      {tabuleiro5[33]} {tabuleiro5[34]} {tabuleiro5[35]} {tabuleiro5[36]} {tabuleiro5[37]} |'
-'      {tabuleiro5[38]} {tabuleiro5[39]} |'
-'      {tabuleiro5[40]} {tabuleiro5[41]} {tabuleiro5[42]} {tabuleiro5[43]} {tabuleiro5[44]} |'
-'      {tabuleiro5[45]} {tabuleiro5[46]} {tabuleiro5[47]} {tabuleiro5[48]} |'
-'      {tabuleiro5[49]} {tabuleiro5[50]} {tabuleiro5[51]} |'
-'      {tabuleiro5[52]} {tabuleiro5[53]} |'
-'      {tabuleiro5[54]} |'
+print(f'\t   \t  \t{tabuleiro5[0]}\t      |')
+print(f'\t      \t{tabuleiro5[1]}\t {tabuleiro5[2]}\t      |')
+print(f'\t   \t{tabuleiro5[3]}\t       {tabuleiro5[4]}\t      |')
+print(f'\t    {tabuleiro5[5]}\t {tabuleiro5[6]}\t {tabuleiro5[7]}\t {tabuleiro5[8]}\t      |')
+print(f'\t {tabuleiro5[9]}\t {tabuleiro5[10]}\t  {tabuleiro5[11]}\t {tabuleiro5[12]}\t {tabuleiro5[13]}\t      |')
+print(f'\t    {tabuleiro5[14]}\t {tabuleiro5[15]}\t {tabuleiro5[16]}\t {tabuleiro5[17]}\t      |')
+print(f'\t {tabuleiro5[18]}\t {tabuleiro5[19]}\t                       {tabuleiro5[20]}\t {tabuleiro5[21]}\t      |')
+print(f'\t    {tabuleiro5[22]}\t {tabuleiro5[23]}\t {tabuleiro5[24]}\t {tabuleiro5[25]}\t      |')
+print(f'\t {tabuleiro5[26]}\t {tabuleiro5[27]}\t {tabuleiro5[28]}\t {tabuleiro5[29]}\t {tabuleiro5[30]}\t      |')
+print(f'\t    {tabuleiro5[31]}\t                                             {tabuleiro5[32]}\t      |')
+print(f'\t {tabuleiro5[33]}\t {tabuleiro5[34]}\t {tabuleiro5[35]}\t {tabuleiro5[36]}\t {tabuleiro5[37]}\t      |')
+print(f'\t                          {tabuleiro5[38]}\t {tabuleiro5[39]}\t      |')
+print(f'\t {tabuleiro5[40]}\t {tabuleiro5[41]}\t {tabuleiro5[42]}\t {tabuleiro5[43]}\t {tabuleiro5[44]}\t      |')
+print(f'\t    {tabuleiro5[45]}\t {tabuleiro5[46]}\t {tabuleiro5[47]}\t {tabuleiro5[48]}\t      |')
+print(f'\t   \t{tabuleiro5[49]}\t {tabuleiro5[50]}\t {tabuleiro5[51]}\t      |')
+print(f'\t      \t{tabuleiro5[52]}\t {tabuleiro5[53]}\t      |')
+print(f'\t   \t  \t{tabuleiro5[54]}\t      |')
+
+
                      

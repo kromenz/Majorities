@@ -19,6 +19,18 @@ PontDirecao3=[0,0]
 VencedorDirecao3=[' ',' ',' ',' ',' ']
 Direcao3=[LinhasDirecao3,PontDirecao3,VencedorDirecao3]
 
+l1=[' ',' ',10,19,27,34,41,'  ','  ']
+l2=[' ',6,15,23,32,'  ',46,'  ']
+l3=[' ',4,11,20,28,35,42,50,'  ']
+l4=[2,7,16,24,'  ',39,47,53]
+l5=[1,' ',12,'  ',29,36,43,51,55]
+l6=[3,8,17,25,'  ',40,48,54]
+l7=[' ',5,13,21,30,37,44,52,'  ']
+l8=[' ',9,18,26,33,'  ',49,'  ']
+l9=[' ',' ',14,22,31,38,45,'  ','  ']
+
+tabuleiro5=[l1,l2,l3,l4,l5,l6,l7,l8,l9]
+
 class bcolors:
     B = '\033[96m' #BLUE
     A = '\033[91m' #RED
@@ -33,6 +45,17 @@ def sair():
     exit()
     
 def menu():
+
+    linhatab=True
+    for i in range(9):
+            if(i>=2):
+                print(f'{l1[i]}      {l3[i]}      {l5[i]}      {l7[i]}      {l9[i]}')
+                print(f'    {l2[i]}      {l4[i]}      {l6[i]}      {l8[i]}')
+            else:
+                print(f'{l1[i]}       {l3[i]}       {l5[i]}       {l7[i]}       {l9[i]}')
+                print(f'    {l2[i]}       {l4[i]}       {l6[i]}       {l8[i]}')
+
+    
 
     op = -1
     while op not in [0,1,2,3]:
