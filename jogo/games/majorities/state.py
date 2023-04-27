@@ -178,24 +178,6 @@ class MajoritiesState(State):
         state.ContaDirecao(self, Direcao1,state)
         state.ContaDirecao(self, Direcao2,state)
         state.ContaDirecao(self, Direcao3,state)
-        
-        '''
-        action.get_col()
-
-        # drop the checker
-        for row in range(self.__num_rows - 1, -1, -1):
-            if self.__grid[row][col] < 0:
-                self.__grid[row][col] = self.__acting_player
-                break
-
-        # determine if there is a winner
-        self.__has_winner = self.__check_winner(self.__acting_player)
-
-        # switch to next player
-        self.__acting_player = 1 if self.__acting_player == 0 else 0
-
-        self.__turns_count += 1
-        '''
 
     def board():
         print(f"                  _____                   |", end="     \n")
@@ -241,7 +223,13 @@ class MajoritiesState(State):
         VencedorDirecao3[0:15]=[' ',' ',' ',' ',' ']
         Direcao3[0:3]=[LinhasDirecao3,PontDirecao3,VencedorDirecao3]
 
-
+    def available_actions(self):
+        actions = []
+        for i in tabuleiro:
+            if i not in [f'{bcolors.B}B{bcolors.RESET}', f'{bcolors.B}B{bcolors.RESET} ', f'{bcolors.A}A{bcolors.RESET}', f'{bcolors.A}A{bcolors.RESET} ']:
+                actions.append(i+1) # Adiciona a posição não ocupada ao array
+        return actions
+    
     def __is_full(self):
         return self.__turns_count > (self.__num_cols * self.__num_rows)
 
