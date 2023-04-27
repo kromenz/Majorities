@@ -257,8 +257,6 @@ class MajoritiesState(State):
         state.ContaDirecao(self, Direcao2,state)
         state.ContaDirecao(self, Direcao3,state)
 
-        
-
         score=0
         if(playerV==True):
             score=(PontDirecao1[0]-PontDirecao1[1])+(PontDirecao2[0]-PontDirecao2[1])+(PontDirecao3[0]-PontDirecao3[1])
