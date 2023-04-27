@@ -6,7 +6,10 @@ class State(ABC):
     @abstractmethod
     def check_winner(self):
         pass
-
+    
+    @abstractmethod
+    def reset_board():
+        pass
     """
     Retrieve the number of players
     """

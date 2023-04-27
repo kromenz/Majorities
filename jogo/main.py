@@ -26,6 +26,32 @@ def clear():
         os.system('cls')
     else:  # Unix (Linux, macOS)
         os.system('clear')
+        
+def texto(p1, p2):
+    print("\n------------------------------------------------------------------")
+    print(f"\t\tMajorities - {p1.center(10)} VS {p2.center(10)}")
+    print("------------------------------------------------------------------")
+
+def texto_w(p):
+    print("\n-----------------------------------------")
+    print(f"\tVencedor - {p.center(10)}\t\t")
+    print("-----------------------------------------\n")
+    
+def joga_nova():
+    
+    jogar = ""
+    while jogar.lower() not in ["s", "n"]:
+        jogar = input("\n\tDeseja jogar novamente? (S/N) ")
+
+        if jogar.lower() == "s":
+            MajoritiesState.reset_board()
+            clear()
+            continue  # começa o loop novamente
+        if jogar.lower() == "n":
+            sair()
+            break  # interrompe o loop e sai do programa
+        else:
+            print("\n\tIntroduza uma das opções: 'S' ou 'N'")
 
 def sair():
     clear()
@@ -36,7 +62,6 @@ def sair():
     clear()
     exit()  #kill programm
     
-
 def regras():
     print("\n-------------------------------------------------------------------------------------------------")
     print("\t\t\t\tRegras do Majorities!\t\t")
@@ -56,9 +81,7 @@ def regras():
     print("-------------------------------------------------------------------------------------------------\n")
     
     input()
-
     clear()
-
 
 def menu():
     op = -1
@@ -72,7 +95,7 @@ def menu():
         print("\n")
         print("|\t3. Jogar contra Random \t\t|")
         print("\n")
-        print("|\t4. Jogar Minimax contra Random \t|")
+        print("|\t4. Jogar entre computas \t|")
         print("\n")
         print("|\t5. Regras do jogo \t\t|")
         print("\n")
@@ -88,7 +111,6 @@ def main():
     
     while True:
         op = menu()
-        MajoritiesState.reset_board()
 
         num_iterations = 1000
         clear()
@@ -99,64 +121,38 @@ def main():
             p1 = input("\n\tIntroduza o nome do Player 1: ")
             p2 = input("\n\tIntroduza o nome do Player 2: ")
             clear()
-            print("\n------------------------------------------------------------------")
-            print(f"\t\tMajorities - {p1.center(10)} VS {p2.center(10)}")
-            print("------------------------------------------------------------------")
-
+            texto(p1, p2)
             end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
             playerV = False
             while end == 0 :
-                print("\n------------------------------------------------------------------")
-                print(f"\t\tMajorities - {p1.center(10)} VS {p2.center(10)}")
-                print("------------------------------------------------------------------\n")
+                texto(p1, p2)
                 end = int(HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
-                print("\n------------------------------------------------------------------")
-                print(f"\t\tMajorities - {p1.center(10)} VS {p2.center(10)}")
-                print("------------------------------------------------------------------\n")
+                texto(p1, p2)
                 end = int(HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
                 if(end != 0):
                     break
                 playerV = True
-                print("\n------------------------------------------------------------------")
-                print(f"\t\tMajorities - {p1.center(10)} VS {p2.center(10)}")
-                print("------------------------------------------------------------------\n")
+                texto(p1, p2)
                 
                 end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
-                print("\n------------------------------------------------------------------")
-                print(f"\t\tMajorities - {p1.center(10)} VS {p2.center(10)}")
-                print("------------------------------------------------------------------\n")
+                texto(p1, p2)
                 end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
                 if(end != 0):
                     break
                 playerV = False
                 
             if end == 1:
-                print("\n-----------------------------------------")
-                print(f"\tVencedor - {p1.center(10)}\t\t")
-                print("-----------------------------------------\n")
-                
+                texto_w(p1)
             else:
-                print("\n-----------------------------------------")
-                print(f"\tVencedor - {p2.center(10)}\t\t")
-                print("-----------------------------------------")
-                
-            jogar_novamente = input("\nDeseja jogar novamente? (S/N) ")
-
-            if jogar_novamente.lower() == "s":
-                continue  # começa o loop novamente
-            if jogar_novamente.lower() == "n":
-                print("\n\tObrigado por ter jogado, volte sempre!")
-                break  # interrompe o loop e sai do programa
+                texto_w(p2)
+            joga_nova()
             
         elif(op == 2):
-            print("\n\t Humano vs Greedy")
             end = 0
             playerV = True
             p1 = input("\n\tIntroduza o nome do Player 1: ")
-            print("\n------------------------------------------------------------------")
-            print(f"\t\tMajorities - {p1.center(10)} VS Greedy")
-            print("------------------------------------------------------------------")
-
+            p2 = "Greedy"
+            texto(p1, p2)
             end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
             playerV = False
             while end == 0 :
@@ -164,44 +160,25 @@ def main():
                 if(end!=0):
                     break
                 playerV = True
-                print("\n------------------------------------------------------------------")
-                print(f"\tMajorities - {p1.center(10)} VS Greedy")
-                print("------------------------------------------------------------------\n")
+                texto(p1, p2)
                 end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
-                print("\n------------------------------------------------------------------")
-                print(f"\tMajorities - {p1.center(10)} VS Greedy")
-                print("------------------------------------------------------------------\n")
+                texto(p1, p2)
                 end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
                 if(end != 0):
                     break
                 playerV = False
-                
             if end == 1:
-                print("\n-----------------------------------------")
-                print(f"\tVencedor - {p1.center(10)}\t\t")
-                print("-----------------------------------------\n")
-                
+                texto_w(p1)
             else:
-                print("\n-----------------------------------------")
-                print(f"\tVencedor - Greedy")
-                print("-----------------------------------------")  
-
-            jogar_novamente = input("\nDeseja jogar novamente? (S/N) ")
-
-            if jogar_novamente.lower() == "s":
-                continue  # começa o loop novamente
-            if jogar_novamente.lower() == "n":
-                print("\n\tObrigado por ter jogado, volte sempre!")
-                break  # interrompe o loop e sai do programa
+                texto_w(p2)
+            joga_nova()
         
         elif(op == 3):
             end = 0
             playerV = True
             p1 = input("\n\tIntroduza o nome do Player 1: ")
-            print("\n------------------------------------------------------------------")
-            print(f"\t\tMajorities - {p1.center(10)} VS Random")
-            print("------------------------------------------------------------------")
-
+            p2 = "Random"
+            texto(p1, p2)
             end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
             playerV = False
             while end == 0 :
@@ -210,38 +187,22 @@ def main():
                 if(end!=0):
                     break
                 playerV = True
-                print("\n------------------------------------------------------------------")
-                print(f"\tMajorities - {p1.center(10)} VS Random")
-                print("------------------------------------------------------------------\n")
+                texto(p1, p2)
                 end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
-                print("\n------------------------------------------------------------------")
-                print(f"\tMajorities - {p1.center(10)} VS Random")
-                print("------------------------------------------------------------------\n")
+                texto(p1, p2)
                 end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
                 if(end != 0):
                     break
                 playerV = False
                 
             if end == 1:
-                print("\n-----------------------------------------")
-                print(f"\tVencedor - {p1.center(10)}\t\t")
-                print("-----------------------------------------\n")
-                
+                texto_w(p1)
             else:
-                print("\n-----------------------------------------")
-                print(f"\tVencedor - Random")
-                print("-----------------------------------------")  
-
-            jogar_novamente = input("\nDeseja jogar novamente? (S/N) ")
-
-            if jogar_novamente.lower() == "s":
-                continue  # começa o loop novamente
-            if jogar_novamente.lower() == "n":
-                print("\n\tObrigado por ter jogado, volte sempre!")
-                break  # interrompe o loop e sai do programa
+                texto_w(p2)
+            joga_nova()
         
         elif(op == 4):
-            print("\n\t Minimax vs Rando")
+            pass
 
         elif(op == 5):
             regras()
