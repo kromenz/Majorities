@@ -17,11 +17,11 @@ class MinimaxMajoritiesPlayer(MajoritiesPlayer):
     '''
 
     def __heuristic(self, state: MajoritiesState):
-        grid = state.get_grid()
+        grid = state.board()
         longest = 0
 
         # check each line
-        for row in range(0, state.get_num_rows()):
+        for pos in range(0, state.get_num_rows()):
             seq = 0
             for col in range(0, state.get_num_cols()):
                 if grid[row][col] == self.get_current_pos():
