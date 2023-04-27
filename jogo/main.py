@@ -54,17 +54,7 @@ def regras():
     print("|\tum dos jogadores ganhar a maior parte das direções.\t\t\t\t\t|")
     print("-------------------------------------------------------------------------------------------------\n")
     
-    
-    # Espera por input
-    while True:
-        try:
-            op = int(input("\n\tSelecione '0' e 'ENTER', para voltar atrás: "))
-            if op == 0:
-                break
-            else:
-                print("Opção inválida. Digite '0' para voltar ao menu principal.")
-        except ValueError:
-            print("Opção inválida. Digite '0' para voltar ao menu principal.")
+    input()
 
     clear()
 
@@ -97,6 +87,7 @@ def main():
     
     while True:
         op = menu()
+        MajoritiesState.reset_board()
 
         num_iterations = 1000
         clear()
@@ -112,19 +103,16 @@ def main():
             print("------------------------------------------------------------------")
 
             end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
-            clear()
             playerV = False
             while end == 0 :
                 print("\n------------------------------------------------------------------")
                 print(f"\t\tMajorities - {p1.center(10)} VS {p2.center(10)}")
                 print("------------------------------------------------------------------\n")
                 end = int(HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
-                clear()
                 print("\n------------------------------------------------------------------")
                 print(f"\t\tMajorities - {p1.center(10)} VS {p2.center(10)}")
                 print("------------------------------------------------------------------\n")
                 end = int(HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
-                clear()
                 if(end != 0):
                     break
                 playerV = True
@@ -133,12 +121,10 @@ def main():
                 print("------------------------------------------------------------------\n")
                 
                 end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
-                clear()
                 print("\n------------------------------------------------------------------")
                 print(f"\t\tMajorities - {p1.center(10)} VS {p2.center(10)}")
                 print("------------------------------------------------------------------\n")
                 end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
-                clear()
                 if(end != 0):
                     break
                 playerV = False

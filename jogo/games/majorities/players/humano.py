@@ -11,10 +11,13 @@ class HumanoMajoritiesPlayer(MajoritiesPlayer):
     def __init__(self, name):
         super().__init__(name)
 
+    
+
     def get_action(self, state: MajoritiesState, playerV):
         
         z=False
         
+        state.reset_board()
         state.board()
         jogada = int(input("\nEscolha onde quer jogar:"))
         z=state.validate_action(self,MajoritiesAction,jogada)
@@ -24,6 +27,7 @@ class HumanoMajoritiesPlayer(MajoritiesPlayer):
                 z=state.validate_action(self,MajoritiesAction,jogada)
         
         state.update(self,state,jogada,playerV)
+        state.clear()
         if(int(state.check_winner(self) != 0)):
             state.board()
 

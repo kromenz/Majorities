@@ -3,6 +3,8 @@ from typing import Optional
 from games.majorities.action import MajoritiesAction
 from games.majorities.result import MajoritiesResult
 from games.state import State
+import os
+
 
 
 
@@ -51,6 +53,14 @@ class MajoritiesState(State):
         determine if a winner was found already 
         """
         self.__has_winner = False
+
+
+    def clear():
+        if os.name == 'nt':  # Windows
+            os.system('cls')
+        else:  # Unix (Linux, macOS)
+            os.system('clear')
+
 
     def check_winner(self):
 
@@ -214,7 +224,27 @@ class MajoritiesState(State):
         print(f"                 \_____/                  |", end=f"            \___/           |           \___/           |           \___/                \n")
 
 
-        
+    def reset_board():
+        tabuleiro[0:15]=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+        PecasP= []
+        PecasB= []
+
+        LinhasDirecao1= [[1,3,5],[2,7,9],[4,6,12], [8,11,14],[10,13,15]]
+        PontDirecao1[0:2]=[0,0]
+        VencedorDirecao1[0:15]=[' ',' ',' ',' ',' ']
+        Direcao1[0:3]=[LinhasDirecao1,PontDirecao1,VencedorDirecao1]
+
+        LinhasDirecao2=[[1,2,4],[3,6,8],[5,7,10],[9,11,13],[12,14,15]]
+        PontDirecao2[0:2]=[0,0]
+        VencedorDirecao2[0:15]=[' ',' ',' ',' ',' ']
+        Direcao2[0:3]=[LinhasDirecao2,PontDirecao2,VencedorDirecao2]
+
+        LinhasDirecao3=[[4,8,10],[2,6,13],[1,11,15],[3,7,14],[5,9,12]]
+        PontDirecao3[0:2]=[0,0]
+        VencedorDirecao3[0:15]=[' ',' ',' ',' ',' ']
+        Direcao3[0:3]=[LinhasDirecao3,PontDirecao3,VencedorDirecao3]
+
+
     def __is_full(self):
         return self.__turns_count > (self.__num_cols * self.__num_rows)
 
