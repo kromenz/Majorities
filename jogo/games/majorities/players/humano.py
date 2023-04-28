@@ -11,24 +11,22 @@ class HumanoMajoritiesPlayer(MajoritiesPlayer):
     def __init__(self, name):
         super().__init__(name)
 
-    def get_action(self, state: MajoritiesState, playerV):
-        
-        z=False
-        
-        state.board()
+    def get_action(self, state: MajoritiesState, playerV,dimensao):
+        z = False
+
+        state.board(self, dimensao)
         jogada = int(input("\nEscolha onde quer jogar:"))
-        z=state.validate_action(self,MajoritiesAction,jogada)
+        z=state.validate_action(self,MajoritiesAction,jogada,dimensao)
         if z == True:
             while  z == True:
                 jogada = int(input("\nLugar Ocupado/Nao Valido\n\nEscolha outro lugar:"))
-                z=state.validate_action(self,MajoritiesAction,jogada)
+                z=state.validate_action(self,MajoritiesAction,jogada,dimensao)
         
-        state.update(self,state,jogada,playerV)
+        state.update(self,state,jogada,playerV,dimensao)
         state.clear()
         if(int(state.check_winner(self) != 0)):
-            state.board()
+            state.board(self, dimensao)
 
-        
         return int(state.check_winner(self))    
     
     def event_action(self, pos: int, action, new_state: State):

@@ -12,7 +12,7 @@ class GreedyMajoritiesPlayer(MajoritiesPlayer):
         
     def get_action(self, state: MajoritiesState, playerV):
         
-        available_actions = state.available_actions(self)
+        available_actions = state.get_possible_actions(self)
         max_score = 0
         best_action = []
         

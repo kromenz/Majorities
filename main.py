@@ -1,8 +1,6 @@
 import time
 
-tabuleiro=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-PecasP= []
-PecasB= []
+tabuleiro= [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
 LinhasDirecao1= [[1,3,5],[2,7,9],[4,6,12], [8,11,14],[10,13,15]]
 PontDirecao1=[0,0]
@@ -50,7 +48,8 @@ def menu():
     for i in range(9):
             if(i>=2):
                 print(f'{l1[i]}      {l3[i]}      {l5[i]}      {l7[i]}      {l9[i]}')
-                print(f'    {l2[i]}      {l4[i]}      {l6[i]}      {l8[i]}')
+                if(i<8):
+                    print(f'    {l2[i]}      {l4[i]}      {l6[i]}      {l8[i]}')
             else:
                 print(f'{l1[i]}       {l3[i]}       {l5[i]}       {l7[i]}       {l9[i]}')
                 print(f'    {l2[i]}       {l4[i]}       {l6[i]}       {l8[i]}')

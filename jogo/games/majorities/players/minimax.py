@@ -17,8 +17,8 @@ class MinimaxMajoritiesPlayer(MajoritiesPlayer):
     '''
 
     def __heuristic(self, state: MajoritiesState):
-        grid = state.board()
-        longest = 0
+        grid = state.board(dimensao)
+        most = 0
 
         # check each line
         for pos in range(0, state.get_num_rows()):
@@ -27,12 +27,12 @@ class MinimaxMajoritiesPlayer(MajoritiesPlayer):
                 if grid[row][col] == self.get_current_pos():
                     seq += 1
                 else:
-                    if seq > longest:
-                        longest = seq
+                    if seq > most:
+                        most = seq
                     seq = 0
 
-            if seq > longest:
-                longest = seq
+            if seq > most:
+                most = seq
 
         # check each column
         for col in range(0, state.get_num_cols()):
@@ -41,12 +41,12 @@ class MinimaxMajoritiesPlayer(MajoritiesPlayer):
                 if grid[row][col] == self.get_current_pos():
                     seq += 1
                 else:
-                    if seq > longest:
-                        longest = seq
+                    if seq > most:
+                        most = seq
                     seq = 0
 
-            if seq > longest:
-                longest = seq
+            if seq > most:
+                most = seq
 
         # check each upward diagonal
         for row in range(3, state.get_num_rows()):
@@ -59,11 +59,11 @@ class MinimaxMajoritiesPlayer(MajoritiesPlayer):
                        (1 if grid[row - 2][col + 2] == self.get_current_pos() else 0) + \
                        (1 if grid[row - 3][col + 3] == self.get_current_pos() else 0)
 
-                if seq1 > longest:
-                    longest = seq1
+                if seq1 > most:
+                    most = seq1
 
-                if seq2 > longest:
-                    longest = seq2
+                if seq2 > most:
+                    most = seq2
 
         # check each downward diagonal
         for row in range(0, state.get_num_rows() - 3):
@@ -76,13 +76,13 @@ class MinimaxMajoritiesPlayer(MajoritiesPlayer):
                        (1 if grid[row + 2][col + 2] == self.get_current_pos() else 0) + \
                        (1 if grid[row + 3][col + 3] == self.get_current_pos() else 0)
 
-                if seq1 > longest:
-                    longest = seq1
+                if seq1 > most:
+                    most = seq1
 
-                if seq2 > longest:
-                    longest = seq2
+                if seq2 > most:
+                    most = seq2
 
-        return longest
+        return most
 
     """Implementation of minimax search (recursive, with alpha/beta pruning) :param state: the state for which the 
     search should be made :param depth: maximum depth of the search :param alpha: to optimize the search :param beta: 

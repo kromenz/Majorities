@@ -24,10 +24,67 @@ PontDirecao3=[0,0]
 VencedorDirecao3=[' ',' ',' ',' ',' ']
 Direcao3=[LinhasDirecao3,PontDirecao3,VencedorDirecao3]
 
-class bcolors:
-    B = '\033[96m' #BLUE
-    A = '\033[91m' #RED
-    RESET = '\033[0m' #RESET COLOR
+l1=[' ',' ',10,19,27,34,41,'  ','  ']
+l2=[' ',6,15,23,32,'  ',46,'  ']
+l3=[' ',4,11,20,28,35,42,50,'  ']
+l4=[2,7,16,24,'  ',39,47,53]
+l5=[1,' ',12,'  ',29,36,43,51,55]
+l6=[3,8,17,25,'  ',40,48,54]
+l7=[' ',5,13,21,30,37,44,52,'  ']
+l8=[' ',9,18,26,33,'  ',49,'  ']
+l9=[' ',' ',14,22,31,38,45,'  ','  ']
+
+l1ind=[' ',' ',10,19,27,34,41,'  ','  ']
+l2ind=[' ',6,15,23,32,'  ',46,'  ']
+l3ind=[' ',4,11,20,28,35,42,50,'  ']
+l4ind=[2,7,16,24,'  ',39,47,53]
+l5ind=[1,' ',12,'  ',29,36,43,51,55]
+l6ind=[3,8,17,25,'  ',40,48,54]
+l7ind=[' ',5,13,21,30,37,44,52,'  ']
+l8ind=[' ',9,18,26,33,'  ',49,'  ']
+l9ind=[' ',' ',14,22,31,38,45,'  ','  ']
+
+LinhasDirecao15= [[1,3,5,9,14],
+                  [2,8,13,18,22],
+                  [4,7,12,17,21,26,31], 
+                  [6,11,16,25,30,33,38],
+                  [10,15,20,24,29,37,45],
+                  [19,23,28,36,40,44,49],
+                  [27,32,35,39,43,48,52],
+                  [34,42,47,51,54],
+                  [41,46,50,53,55]]
+PontDirecao15=[0,0]
+VencedorDirecao15=[' ',' ',' ',' ',' ',' ',' ']
+Direcao15=[LinhasDirecao15,PontDirecao15,VencedorDirecao15]
+
+LinhasDirecao25=[[1,2,4,6,10],
+                 [3,7,11,15,19],
+                 [5,8,12,16,20,23,27],
+                 [9,13,17,24,28,32,34],
+                 [14,18,21,25,29,35,41],
+                 [22,26,30,36,39,42,46],
+                 [31,33,37,40,43,47,50],
+                 [38,44,48,51,53],
+                 [45,49,52,54,55]
+                 ]
+PontDirecao25=[0,0]
+VencedorDirecao25=[' ',' ',' ',' ',' ',' ',' ']
+Direcao25=[LinhasDirecao25,PontDirecao25,VencedorDirecao25]
+
+LinhasDirecao35=[[10,19,27,34,41],
+                 [6,15,23,32,46],
+                 [4,11,20,28,35,42,50],
+                 [2,7,16,24,39,47,53],
+                 [1,12,29,36,43,51,55],
+                 [3,8,17,25,40,48,54],
+                 [5,13,21,30,37,44,52],
+                 [9,18,26,33,49],
+                 [14,22,31,38,45]
+                 ]
+PontDirecao35=[0,0]
+VencedorDirecao35=[' ',' ',' ',' ',' ',' ',' ']
+Direcao35=[LinhasDirecao35,PontDirecao35,VencedorDirecao35]
+
 
 class MajoritiesState(State):
     
@@ -86,7 +143,7 @@ class MajoritiesState(State):
         
         pecastabuleiro = 0
         for i in tabuleiro:
-            if(i == f'{bcolors.A}A{bcolors.RESET}' or i == f'{bcolors.B}B{bcolors.RESET}' or i == f'{bcolors.A}A{bcolors.RESET} ' or i == f'{bcolors.B}B{bcolors.RESET} '):
+            if(i == f'A' or i == f'B'):
                 pecastabuleiro += 1
 
         if pecastabuleiro == 15:
@@ -117,22 +174,74 @@ class MajoritiesState(State):
     def get_num_players(self):
         return 2
     
-    def validate_action(self, action: MajoritiesAction, x) -> bool:
-        if(x< 1 or x > 15):
-            return True
-        if(tabuleiro[x-1] == f'{bcolors.A}A{bcolors.RESET}' or tabuleiro[x-1] == f'{bcolors.B}B{bcolors.RESET}' or tabuleiro[x-1] == f'{bcolors.A}A{bcolors.RESET} ' or tabuleiro[x-1] == f'{bcolors.B}B{bcolors.RESET} '):
+    def validate_action(self, action: MajoritiesAction, x,dimensao) -> bool:
+        if(dimensao==3):
+            if(x< 1 or x > 15):
+                return True
+            if(tabuleiro[x-1] == f'A' or tabuleiro[x-1] == f'B'):
+                return True
+            
+            return False
+        
+        if(dimensao==5):
+            if(x< 1 or x > 55):
+                return True
+            for i in l1:
+                if i==x:
+                    return False
+                    
+
+            for i in l2:
+                if i==x:
+                    return False
+
+            for i in l3:
+                if i==x:
+                    return False
+                    
+
+            for i in l4:
+                if i == x:
+                    return False
+                
+            for i in l5:
+                if i == x:
+                    return False
+                    
+
+            for i in l6:
+                if i == x:
+                    return False
+                
+            for i in l7:
+                if i == x:
+                    return False
+                    
+
+            for i in l8:
+                if i == x:
+                    return False
+            
+            for i in l9:
+                if i==x:
+                    return False
+                       
             return True
 
-        return False
+    def ContaPecas5():
+        pass
+
+    def ContaDirecao5():
+        pass
 
     def ContaPecas(self, tuplo):
         nA=0
         nB=0
         i=0
-        while(i<3):
-            if tabuleiro[tuplo[i]-1] == f'{bcolors.B}B{bcolors.RESET}' or tabuleiro[tuplo[i]-1] == f'{bcolors.B}B{bcolors.RESET} ':
+        while(i < 3):
+            if tabuleiro[tuplo[i]-1] == f'B':
                     nB += 1
-            elif tabuleiro[tuplo[i]-1] == f'{bcolors.A}A{bcolors.RESET}' or tabuleiro[tuplo[i]-1] == f'{bcolors.A}A{bcolors.RESET} ':
+            elif tabuleiro[tuplo[i]-1] == f'A':
                     nA += 1
             i +=  1
 
@@ -148,59 +257,109 @@ class MajoritiesState(State):
         dA=0
         dB=0
 
+
         while i<5:
             V = state.ContaPecas(self, direcao[0][i])
             if(V=='A'):
                 dA += 1
-                direcao[2][i] = f'{bcolors.A}A{bcolors.RESET}'
+                direcao[2][i] = f'A'
             elif(V=='B'):
                 dB += 1
-                direcao[2][i] = f'{bcolors.B}B{bcolors.RESET}'
+                direcao[2][i] = f'B'
             else:
                 direcao[2][i] = ' '
             i += 1
 
         direcao[1][0]=dB
         direcao[1][1]=dA
+    
+    def put_piece5(self, state, x, playerV, dimensao,linha):
+        for i in range(len(linha)):
+                if linha[i] != ' ' and  linha[i] != '  ':
+                    if linha[i]==x:
+                        if(playerV==True):
+                            linha[i] = f'B'
+                        else:
+                            linha[i] = f'A'
 
-    def update(self, state, x, playerV):
-        if(playerV==True):
-            if(int(tabuleiro[x-1])>=10):
-                tabuleiro[x-1] = f'{bcolors.B}B{bcolors.RESET} '
+    def put_piece(self, state, x, playerV, dimensao):
+
+        if(dimensao==3):
+            if(playerV==True):
+                tabuleiro[x-1] = f'B'
             else:
-                tabuleiro[x-1] = f'{bcolors.B}B{bcolors.RESET}'
-        else:
-            if(int(tabuleiro[x-1]) >= 10):
-                tabuleiro[x-1] = f'{bcolors.A}A{bcolors.RESET} '
-            else:
-                tabuleiro[x-1] = f'{bcolors.A}A{bcolors.RESET}'
-        
+                tabuleiro[x-1] = f'A'
+                
+        if(dimensao==5):
+            state.put_piece5(self, state, x, playerV, dimensao,l1)
+            state.put_piece5(self, state, x, playerV, dimensao,l2)
+            state.put_piece5(self, state, x, playerV, dimensao,l3)
+            state.put_piece5(self, state, x, playerV, dimensao,l4)
+            state.put_piece5(self, state, x, playerV, dimensao,l5)
+            state.put_piece5(self, state, x, playerV, dimensao,l6)
+            state.put_piece5(self, state, x, playerV, dimensao,l7)
+            state.put_piece5(self, state, x, playerV, dimensao,l8)
+            state.put_piece5(self, state, x, playerV, dimensao,l9)
+            
+    def update(self, state, x, playerV,dimensao):
+
+        state.put_piece(self, state, x, playerV, dimensao)
         state.ContaDirecao(self, Direcao1,state)
         state.ContaDirecao(self, Direcao2,state)
         state.ContaDirecao(self, Direcao3,state)
 
-    def board():
-        print(f"                  _____                   |", end="     \n")
-        print(f"                 /     \\                  |", end="     \n")
-        print(f"           _____/   {tabuleiro[0]}   \\_____            |", end="     \n")
-        print(f"          /     \       /     \\           |", end="     \n")
-        print(f"    _____/   {tabuleiro[1]}   \_____/   {tabuleiro[2]}   \\_____     |", end="     \n")
-        print(f"   /     \       /     \       /     \\    |", end="     \n")
-        print(f"  /   {tabuleiro[3]}   \_____/       \_____/   {tabuleiro[4]}   \\   |", end="     \n")
-        print(f"  \       /     \       /     \       /   |", end="     \n")
-        print(f"   \_____/   {tabuleiro[5]}   \     /   {tabuleiro[6]}   \_____/    |", end="     \n")
-        print(f"   /     \       /     \       /     \\    |", end=f"            {Direcao1[1][0]} - {Direcao1[1][1]}           |           {Direcao2[1][0]} - {Direcao2[1][1]}           |           {Direcao3[1][0]} - {Direcao3[1][1]}     \n")
-        print(f"  /   {tabuleiro[7]}   \_____/       \_____/   {tabuleiro[8]}   \\   |", end=f"             ___            |            ___            |            ___                 \n")
-        print(f"  \       /                   \       /   |", end=f"         ___/ {Direcao1[2][0]} \___        |        ___/ {Direcao2[2][0]} \___        |        ___/ {Direcao3[2][2]} \___             \n")
-        print(f"   \_____/        _____        \_____/    |", end=f"     ___/ {Direcao1[2][1]} \___/ {Direcao1[2][0]} \___    |    ___/ {Direcao2[2][0]} \___/ {Direcao2[2][1]} \___    |    ___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___         \n")
-        print(f"   /     \       /     \       /     \\    |", end=f"    / {Direcao1[2][2]} \___/ {Direcao1[2][1]} \___/ {Direcao1[2][0]} \   |   / {Direcao2[2][0]} \___/ {Direcao2[2][1]} \___/ {Direcao2[2][2]} \   |   / {Direcao3[2][0]} \___/ {Direcao3[2][2]} \___/ {Direcao3[2][4]} \        \n")
-        print(f"  /  {tabuleiro[9]}   \_____/  {tabuleiro[10]}   \_____/  {tabuleiro[11]}   \\   |", end=f"    \___/ {Direcao1[2][2]} \___/ {Direcao1[2][1]} \___/   |   \___/ {Direcao2[2][1]} \___/ {Direcao2[2][2]} \___/   |   \___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___/        \n")
-        print(f"  \       /     \       /     \       /   |", end=f"    / {Direcao1[2][3]} \___/ {Direcao1[2][2]} \___/ {Direcao1[2][1]} \   |   / {Direcao2[2][1]} \___/ {Direcao2[2][2]} \___/ {Direcao2[2][3]} \   |   / {Direcao3[2][0]} \___/ {Direcao3[2][2]} \___/ {Direcao3[2][4]} \        \n")
-        print(f"   \_____/  {tabuleiro[12]}   \_____/  {tabuleiro[13]}   \_____/    |", end=f"    \___/ {Direcao1[2][3]} \___/ {Direcao1[2][2]} \___/   |   \___/ {Direcao2[2][2]} \___/ {Direcao2[2][3]} \___/   |   \___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___/        \n")
-        print(f"         \       /     \       /          |", end=f"    / {Direcao1[2][4]} \___/ {Direcao1[2][3]} \___/ {Direcao1[2][2]} \   |   / {Direcao2[2][2]} \___/ {Direcao2[2][3]} \___/ {Direcao2[2][4]} \   |   / {Direcao3[2][0]} \___/ {Direcao3[2][2]} \___/ {Direcao3[2][4]} \        \n")
-        print(f"          \_____/  {tabuleiro[14]}   \_____/           |", end=f"    \___/ {Direcao1[2][4]} \___/ {Direcao1[2][3]} \___/   |   \___/ {Direcao2[2][3]} \___/ {Direcao2[2][4]} \___/   |   \___/ {Direcao3[2][1]} \___/ {Direcao3[2][3]} \___/        \n")
-        print(f"                \       /                 |", end=f"        \___/ {Direcao1[2][4]} \___/       |       \___/ {Direcao2[2][4]} \___/       |       \___/ {Direcao3[2][2]} \___/            \n")
-        print(f"                 \_____/                  |", end=f"            \___/           |           \___/           |           \___/                \n")
+    def print_cell(cell, tabuleiro):
+        players = {
+            'A': '\033[96mA\033[0m',
+            'B': '\033[91mB\033[0m',
+        }
+
+        for p,v in players.items():
+            if tabuleiro[cell] == p:
+                return v if cell <= 10 else 'v ' 
+            
+        return tabuleiro[cell]
+            
+
+    def board(self, dimensao):
+        if(dimensao==3):
+            print(f"                  _____                   |", end="     \n")
+            print(f"                 /     \\                  |", end="     \n")
+            print(f"           _____/   {MajoritiesState.print_cell(0,tabuleiro)}   \\_____            |", end="     \n")
+            print(f"          /     \       /     \\           |", end="     \n")
+            print(f"    _____/   {MajoritiesState.print_cell(1,tabuleiro)}   \_____/   {MajoritiesState.print_cell(2,tabuleiro)}   \\_____     |", end="     \n")
+            print(f"   /     \       /     \       /     \\    |", end="     \n")
+            print(f"  /   {MajoritiesState.print_cell(3,tabuleiro)}   \_____/       \_____/   {MajoritiesState.print_cell(4,tabuleiro)}   \\   |", end="     \n")
+            print(f"  \       /     \       /     \       /   |", end="     \n")
+            print(f"   \_____/   {MajoritiesState.print_cell(5,tabuleiro)}   \     /   {MajoritiesState.print_cell(6,tabuleiro)}   \_____/    |", end="     \n")
+            print(f"   /     \       /     \       /     \\    |", end=f"            {Direcao1[1][0]} - {Direcao1[1][1]}           |           {Direcao2[1][0]} - {Direcao2[1][1]}           |           {Direcao3[1][0]} - {Direcao3[1][1]}     \n")
+            print(f"  /   {MajoritiesState.print_cell(7,tabuleiro)}   \_____/       \_____/   {MajoritiesState.print_cell(8,tabuleiro)}   \\   |", end=f"             ___            |            ___            |            ___                 \n")
+            print(f"  \       /                   \       /   |", end=f"         ___/ {MajoritiesState.print_cell(0, Direcao1[2])} \___        |        ___/ {MajoritiesState.print_cell(0, Direcao2[2])} \___        |        ___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___             \n")
+            print(f"   \_____/        _____        \_____/    |", end=f"     ___/ {MajoritiesState.print_cell(1, Direcao1[2])} \___/ {MajoritiesState.print_cell(0, Direcao1[2])} \___    |    ___/ {MajoritiesState.print_cell(0, Direcao2[2])} \___/ {MajoritiesState.print_cell(1, Direcao2[2])} \___    |    ___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___         \n")
+            print(f"   /     \       /     \       /     \\    |", end=f"    / {MajoritiesState.print_cell(2, Direcao1[2])} \___/ {MajoritiesState.print_cell(1, Direcao1[2])} \___/ {MajoritiesState.print_cell(0, Direcao1[2])} \   |   / {MajoritiesState.print_cell(0, Direcao2[2])} \___/ {MajoritiesState.print_cell(1, Direcao2[2])} \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \   |   / {MajoritiesState.print_cell(0, Direcao3[2])} \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/ {MajoritiesState.print_cell(4, Direcao3[2])} \        \n")
+            print(f"  /  {MajoritiesState.print_cell(9,tabuleiro)}   \_____/  {MajoritiesState.print_cell(10,tabuleiro)}   \_____/  {MajoritiesState.print_cell(11,tabuleiro)}   \\   |", end=f"    \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \___/ {MajoritiesState.print_cell(0, Direcao1[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao2[2])} \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___/        \n")
+            print(f"  \       /     \       /     \       /   |", end=f"    / {MajoritiesState.print_cell(3, Direcao1[2])} \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \___/ {MajoritiesState.print_cell(1, Direcao1[2])} \   |   / {MajoritiesState.print_cell(1, Direcao2[2])} \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \___/ {MajoritiesState.print_cell(3, Direcao2[2])} \   |   / {MajoritiesState.print_cell(0, Direcao3[2])} \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/ {MajoritiesState.print_cell(4, Direcao3[2])} \        \n")
+            print(f"   \_____/  {MajoritiesState.print_cell(12,tabuleiro)}   \_____/  {MajoritiesState.print_cell(13,tabuleiro)}   \_____/    |", end=f"    \___/ {MajoritiesState.print_cell(3, Direcao1[2])} \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \___/   |   \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \___/ {MajoritiesState.print_cell(3, Direcao2[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___/        \n")
+            print(f"         \       /     \       /          |", end=f"    / {MajoritiesState.print_cell(4, Direcao1[2])} \___/ {MajoritiesState.print_cell(3, Direcao1[2])} \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \   |   / {MajoritiesState.print_cell(2, Direcao2[2])} \___/ {MajoritiesState.print_cell(3, Direcao2[2])} \___/ {MajoritiesState.print_cell(4, Direcao2[2])} \   |   / {MajoritiesState.print_cell(0, Direcao3[2])} \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/ {MajoritiesState.print_cell(4, Direcao3[2])} \        \n")
+            print(f"          \_____/  {MajoritiesState.print_cell(14,tabuleiro)}   \_____/           |", end=f"    \___/ {MajoritiesState.print_cell(4, Direcao1[2])} \___/ {MajoritiesState.print_cell(3, Direcao1[2])} \___/   |   \___/ {MajoritiesState.print_cell(3, Direcao2[2])} \___/ {MajoritiesState.print_cell(4, Direcao2[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___/        \n")
+            print(f"                \       /                 |", end=f"        \___/ {MajoritiesState.print_cell(4, Direcao1[2])} \___/       |       \___/ {MajoritiesState.print_cell(4, Direcao2[2])} \___/       |       \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/            \n")
+            print(f"                 \_____/                  |", end=f"            \___/           |           \___/           |           \___/                \n")
+
+        if(dimensao==5):
+            for i in range(9):
+                if(i>=2):
+                    print(f'{MajoritiesState.print_cell(i,l1)}      {MajoritiesState.print_cell(i,l3)}      {MajoritiesState.print_cell(i,l5)}      {MajoritiesState.print_cell(i,l7)}      {MajoritiesState.print_cell(i,l9)}')
+                    if(i<8):
+                        print(f'    {MajoritiesState.print_cell(i,l2)}      {MajoritiesState.print_cell(i,l4)}      {MajoritiesState.print_cell(i,l6)}      {MajoritiesState.print_cell(i,l8)}')
+                else:
+                    print(f'{MajoritiesState.print_cell(i,l1)}       {MajoritiesState.print_cell(i,l3)}       {MajoritiesState.print_cell(i,l5)}       {MajoritiesState.print_cell(i,l7)}       {MajoritiesState.print_cell(i,l9)}')
+                    print(f'    {MajoritiesState.print_cell(i,l2)}       {MajoritiesState.print_cell(i,l4)}       {MajoritiesState.print_cell(i,l6)}       {MajoritiesState.print_cell(i,l8)}')
+                
+            
+            print(f'{PontDirecao15[0]} - {PontDirecao15[1]}')
+            print(f'{PontDirecao25[0]} - {PontDirecao25[1]}')
+            print(f'{PontDirecao35[0]} - {PontDirecao35[1]}')
+
 
 
     def reset_board():
@@ -223,7 +382,7 @@ class MajoritiesState(State):
         VencedorDirecao3[0:15]=[' ',' ',' ',' ',' ']
         Direcao3[0:3]=[LinhasDirecao3,PontDirecao3,VencedorDirecao3]
 
-    def available_actions(self):
+    def get_possible_actions(self):
         actions = []
         for i in tabuleiro:
             if i not in [f'{bcolors.B}B{bcolors.RESET}', f'{bcolors.B}B{bcolors.RESET} ', f'{bcolors.A}A{bcolors.RESET}', f'{bcolors.A}A{bcolors.RESET} ']:
@@ -307,13 +466,6 @@ class MajoritiesState(State):
     def before_results(self):
         pass
 
-    def get_possible_actions(self):
-        return list(filter(
-            lambda action: self.validate_action(action),
-            map(
-                lambda pos: MajoritiesAction(pos),
-                range(0, self.get_num_cols()))
-        ))
 
     def sim_play(self, action):
         new_state = self.clone()

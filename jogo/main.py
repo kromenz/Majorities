@@ -26,7 +26,13 @@ def clear():
         os.system('cls')
     else:  # Unix (Linux, macOS)
         os.system('clear')
-        
+
+def tamanho():
+    d = 0
+    while d not in [3, 5]:
+        d = int(input('\tEscolha a dimensao (3 ou 5): '))
+    return d
+
 def texto(p1, p2):
     print("\n------------------------------------------------------------------")
     print(f"\t\tMajorities - {p1.center(10)} VS {p2.center(10)}")
@@ -111,32 +117,33 @@ def main():
     
     while True:
         op = menu()
+        dimensao = 0
 
-        num_iterations = 1000
         clear()
         if(op == 1):
             end = 0
             playerV = True
             sim_name = "Majorities - Humano vs Humano"
+            dimensao = int(tamanho())
             p1 = input("\n\tIntroduza o nome do Player 1: ")
             p2 = input("\n\tIntroduza o nome do Player 2: ")
             clear()
             texto(p1, p2)
-            end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+            end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao)
             playerV = False
             while end == 0 :
                 texto(p1, p2)
-                end = int(HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
+                end = int(HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV,dimensao))
                 texto(p1, p2)
-                end = int(HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
+                end = int(HumanoMajoritiesPlayer(p2).get_action(MajoritiesState,playerV,dimensao))
                 if(end != 0):
                     break
                 playerV = True
                 texto(p1, p2)
                 
-                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao))
                 texto(p1, p2)
-                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao))
                 if(end != 0):
                     break
                 playerV = False
