@@ -227,6 +227,7 @@ def main():
         },
     ]
 
+
     for sim in mj_simulations:
         run_simulation(sim["name"], MajoritiesSimulator(sim["player1"], sim["player2"]), 1)
     

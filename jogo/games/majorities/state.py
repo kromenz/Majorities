@@ -316,11 +316,10 @@ class MajoritiesState(State):
 
         for p,v in players.items():
             if tabuleiro[cell] == p:
-                return v if cell <= 10 else 'v ' 
+                return v if cell < 9 else v + ' '  
             
         return tabuleiro[cell]
             
-
     def board(self, dimensao):
         if(dimensao==3):
             print(f"                  _____                   |", end="     \n")
