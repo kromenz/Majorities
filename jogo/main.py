@@ -101,7 +101,7 @@ def menu():
         print("\n")
         print("|\t3. Jogar contra Random \t\t|")
         print("\n")
-        print("|\t4. Jogar entre computas \t|")
+        print("|\t4. Jogar entre robots \t\t|")
         print("\n")
         print("|\t5. Regras do jogo \t\t|")
         print("\n")
