@@ -1,10 +1,9 @@
-from random import choice
-
-from games.majorities.action import MajoritiesAction
+import math
+import random
 from games.majorities.player import MajoritiesPlayer
+from games.majorities.result import MajoritiesResult
 from games.majorities.state import MajoritiesState
 from games.state import State
-from games.majorities.result import MajoritiesResult
 
 
 class MonteCarloMajoritiesPlayer(MajoritiesPlayer):
@@ -15,21 +14,47 @@ class MonteCarloMajoritiesPlayer(MajoritiesPlayer):
     def montecarlo(self, state: MajoritiesState):
         win = 0
         lost = 0
-        draw = 0
+        d1 = []
+        d2 = []
+        d3 = []
 
-        for play in range(25):
-            state_clone = state.clone()
-            while not state_clone.is_finished:
-                action = choice(state_clone.get_possible_actions())
-                state_clone.play(action)
-            if state_clone.get_result(self.get_current_pos()) == MajoritiesResult.WIN:
-                win += 1
-            if state_clone.get_result(self.get_current_pos()) == MajoritiesResult.LOOSE:
-                lost += 1
-            if state_clone.get_result(self.get_current_pos()) == MajoritiesResult.DRAW:
-                draw += 1
-        
-        return (win + draw*0.25)/win + lost + draw
+        for play in range(10):
+            playerV=True
+            end=0
+            state_clone,d1,d2,d3 = state.clone(self,d1,d2,d3)
+            play = random.choice(state.get_possible_actions_cloned(self,state_clone))
+            state.update_cloned(self, state, play, playerV, d1,d2,d3, state_clone)
+            while end==0:
+                playerV=False
+                play = random.choice(state.get_possible_actions_cloned(self,state_clone))
+                state.update_cloned(self, state, play, playerV, d1,d2,d3, state_clone)
+                play = random.choice(state.get_possible_actions_cloned(self,state_clone))
+                state.update_cloned(self, state, play, playerV, d1,d2,d3, state_clone)
+
+                playerV=True
+                if(state.check_winner_cloned(self,d1,d2,d3,state_clone)!=0):
+                    state.board_cloned(self,state_clone,d1,d2,d3)
+                    break
+
+                play = random.choice(state.get_possible_actions_cloned(self,state_clone))
+                state.update_cloned(self, state, play, playerV, d1,d2,d3, state_clone)
+                play = random.choice(state.get_possible_actions_cloned(self,state_clone))
+                state.update_cloned(self, state, play, playerV, d1,d2,d3, state_clone)
+
+                
+                if(state.check_winner_cloned(self,d1,d2,d3,state_clone)!=0):
+                    state.board_cloned(self,state_clone,d1,d2,d3)
+                    break
+            
+            if(state.check_winner_cloned(self,d1,d2,d3,state_clone)==1):
+                    win += 1
+            if(state.check_winner_cloned(self,d1,d2,d3,state_clone)==2):
+                    lost += 1
+            
+        print('Resultados das simulacoes')
+        print(win)
+        print(lost)
+        return (win * 100)/(win + lost)
 
             
 

@@ -27,10 +27,10 @@ class GreedyMajoritiesPlayer(MajoritiesPlayer):
                     if score == max_score:
                         best_action.append([action,action2])
         
-        
+        dimensao=3
         jogada = random.choice(best_action)
-        state.update(self, state, jogada[0], playerV)
-        state.update(self,state, jogada[1],playerV)
+        state.update(self, state, jogada[0], playerV,dimensao)
+        state.update(self,state, jogada[1],playerV,dimensao)
 
         state.clear()
         if(int(state.check_winner(self) != 0)):

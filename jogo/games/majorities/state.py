@@ -336,7 +336,7 @@ class MajoritiesState(State):
             print(f"  \       /                   \       /   |", end=f"         ___/ {MajoritiesState.print_cell(0, Direcao1[2])} \___        |        ___/ {MajoritiesState.print_cell(0, Direcao2[2])} \___        |        ___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___             \n")
             print(f"   \_____/        _____        \_____/    |", end=f"     ___/ {MajoritiesState.print_cell(1, Direcao1[2])} \___/ {MajoritiesState.print_cell(0, Direcao1[2])} \___    |    ___/ {MajoritiesState.print_cell(0, Direcao2[2])} \___/ {MajoritiesState.print_cell(1, Direcao2[2])} \___    |    ___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___         \n")
             print(f"   /     \       /     \       /     \\    |", end=f"    / {MajoritiesState.print_cell(2, Direcao1[2])} \___/ {MajoritiesState.print_cell(1, Direcao1[2])} \___/ {MajoritiesState.print_cell(0, Direcao1[2])} \   |   / {MajoritiesState.print_cell(0, Direcao2[2])} \___/ {MajoritiesState.print_cell(1, Direcao2[2])} \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \   |   / {MajoritiesState.print_cell(0, Direcao3[2])} \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/ {MajoritiesState.print_cell(4, Direcao3[2])} \        \n")
-            print(f"  /  {MajoritiesState.print_cell(9,tabuleiro)}   \_____/  {MajoritiesState.print_cell(10,tabuleiro)}   \_____/  {MajoritiesState.print_cell(11,tabuleiro)}   \\   |", end=f"    \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \___/ {MajoritiesState.print_cell(0, Direcao1[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao2[2])} \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___/        \n")
+            print(f"  /  {MajoritiesState.print_cell(9,tabuleiro)}   \_____/  {MajoritiesState.print_cell(10,tabuleiro)}   \_____/  {MajoritiesState.print_cell(11,tabuleiro)}   \\   |", end=f"    \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \___/ {MajoritiesState.print_cell(1, Direcao1[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao2[2])} \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___/        \n")
             print(f"  \       /     \       /     \       /   |", end=f"    / {MajoritiesState.print_cell(3, Direcao1[2])} \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \___/ {MajoritiesState.print_cell(1, Direcao1[2])} \   |   / {MajoritiesState.print_cell(1, Direcao2[2])} \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \___/ {MajoritiesState.print_cell(3, Direcao2[2])} \   |   / {MajoritiesState.print_cell(0, Direcao3[2])} \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/ {MajoritiesState.print_cell(4, Direcao3[2])} \        \n")
             print(f"   \_____/  {MajoritiesState.print_cell(12,tabuleiro)}   \_____/  {MajoritiesState.print_cell(13,tabuleiro)}   \_____/    |", end=f"    \___/ {MajoritiesState.print_cell(3, Direcao1[2])} \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \___/   |   \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \___/ {MajoritiesState.print_cell(3, Direcao2[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___/        \n")
             print(f"         \       /     \       /          |", end=f"    / {MajoritiesState.print_cell(4, Direcao1[2])} \___/ {MajoritiesState.print_cell(3, Direcao1[2])} \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \   |   / {MajoritiesState.print_cell(2, Direcao2[2])} \___/ {MajoritiesState.print_cell(3, Direcao2[2])} \___/ {MajoritiesState.print_cell(4, Direcao2[2])} \   |   / {MajoritiesState.print_cell(0, Direcao3[2])} \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/ {MajoritiesState.print_cell(4, Direcao3[2])} \        \n")
@@ -384,32 +384,20 @@ class MajoritiesState(State):
     def get_possible_actions(self):
         actions = []
         for i in tabuleiro:
-            if i not in [f'{bcolors.B}B{bcolors.RESET}', f'{bcolors.B}B{bcolors.RESET} ', f'{bcolors.A}A{bcolors.RESET}', f'{bcolors.A}A{bcolors.RESET} ']:
+            if i not in ['B','A']:
                 actions.append(i) # Adiciona a posição não ocupada ao array
         return actions
     
     def bestplay(self,state, action, action2,playerV):
         if(playerV==True):
-            if(int(tabuleiro[action-1])>=10):
-                tabuleiro[action-1] = f'{bcolors.B}B{bcolors.RESET} '
-            else:
-                tabuleiro[action-1] = f'{bcolors.B}B{bcolors.RESET}'
+            tabuleiro[action-1] = f'B'
         else:
-            if(int(tabuleiro[action-1]) >= 10):
-                tabuleiro[action-1] = f'{bcolors.A}A{bcolors.RESET} '
-            else:
-                tabuleiro[action-1] = f'{bcolors.A}A{bcolors.RESET}'
-        
+            tabuleiro[action-1] = f'A'
+
         if(playerV==True):
-            if(int(tabuleiro[action2-1])>=10):
-                tabuleiro[action2-1] = f'{bcolors.B}B{bcolors.RESET} '
-            else:
-                tabuleiro[action2-1] = f'{bcolors.B}B{bcolors.RESET}'
+            tabuleiro[action2-1] = f'B'
         else:
-            if(int(tabuleiro[action2-1]) >= 10):
-                tabuleiro[action2-1] = f'{bcolors.A}A{bcolors.RESET} '
-            else:
-                tabuleiro[action2-1] = f'{bcolors.A}A{bcolors.RESET}'
+            tabuleiro[action2-1] = f'A'
 
         state.ContaDirecao(self, Direcao1,state)
         state.ContaDirecao(self, Direcao2,state)
@@ -439,15 +427,161 @@ class MajoritiesState(State):
     def get_acting_player(self) -> int:
         return self.__acting_player
 
-    def clone(self):
-        cloned_state = MajoritiesState(self.__num_rows, self.__num_cols)
-        cloned_state.__turns_count = self.__turns_count
-        cloned_state.__acting_player = self.__acting_player
-        cloned_state.__has_winner = self.__has_winner
-        for row in range(0, self.__num_rows):
-            for col in range(0, self.__num_cols):
-                cloned_state.__grid[row][col] = self.__grid[row][col]
-        return cloned_state
+    def clone(self,d1,d2,d3):
+        cloned_state = tabuleiro.copy()
+        d1
+        d2
+        d3
+        
+        d1=Direcao1.copy()
+        d2=Direcao2.copy()
+        d3=Direcao3.copy()
+        
+        return cloned_state,d1,d2,d3
+    
+    def board_cloned(self, tabuleiro,Direcao1,Direcao2,Direcao3):
+            print(f"                  _____                   |", end="     \n")
+            print(f"                 /     \\                  |", end="     \n")
+            print(f"           _____/   {MajoritiesState.print_cell(0,tabuleiro)}   \\_____            |", end="     \n")
+            print(f"          /     \       /     \\           |", end="     \n")
+            print(f"    _____/   {MajoritiesState.print_cell(1,tabuleiro)}   \_____/   {MajoritiesState.print_cell(2,tabuleiro)}   \\_____     |", end="     \n")
+            print(f"   /     \       /     \       /     \\    |", end="     \n")
+            print(f"  /   {MajoritiesState.print_cell(3,tabuleiro)}   \_____/       \_____/   {MajoritiesState.print_cell(4,tabuleiro)}   \\   |", end="     \n")
+            print(f"  \       /     \       /     \       /   |", end="     \n")
+            print(f"   \_____/   {MajoritiesState.print_cell(5,tabuleiro)}   \     /   {MajoritiesState.print_cell(6,tabuleiro)}   \_____/    |", end="     \n")
+            print(f"   /     \       /     \       /     \\    |", end=f"            {Direcao1[1][0]} - {Direcao1[1][1]}           |           {Direcao2[1][0]} - {Direcao2[1][1]}           |           {Direcao3[1][0]} - {Direcao3[1][1]}     \n")
+            print(f"  /   {MajoritiesState.print_cell(7,tabuleiro)}   \_____/       \_____/   {MajoritiesState.print_cell(8,tabuleiro)}   \\   |", end=f"             ___            |            ___            |            ___                 \n")
+            print(f"  \       /                   \       /   |", end=f"         ___/ {MajoritiesState.print_cell(0, Direcao1[2])} \___        |        ___/ {MajoritiesState.print_cell(0, Direcao2[2])} \___        |        ___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___             \n")
+            print(f"   \_____/        _____        \_____/    |", end=f"     ___/ {MajoritiesState.print_cell(1, Direcao1[2])} \___/ {MajoritiesState.print_cell(0, Direcao1[2])} \___    |    ___/ {MajoritiesState.print_cell(0, Direcao2[2])} \___/ {MajoritiesState.print_cell(1, Direcao2[2])} \___    |    ___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___         \n")
+            print(f"   /     \       /     \       /     \\    |", end=f"    / {MajoritiesState.print_cell(2, Direcao1[2])} \___/ {MajoritiesState.print_cell(1, Direcao1[2])} \___/ {MajoritiesState.print_cell(0, Direcao1[2])} \   |   / {MajoritiesState.print_cell(0, Direcao2[2])} \___/ {MajoritiesState.print_cell(1, Direcao2[2])} \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \   |   / {MajoritiesState.print_cell(0, Direcao3[2])} \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/ {MajoritiesState.print_cell(4, Direcao3[2])} \        \n")
+            print(f"  /  {MajoritiesState.print_cell(9,tabuleiro)}   \_____/  {MajoritiesState.print_cell(10,tabuleiro)}   \_____/  {MajoritiesState.print_cell(11,tabuleiro)}   \\   |", end=f"    \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \___/ {MajoritiesState.print_cell(1, Direcao1[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao2[2])} \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___/        \n")
+            print(f"  \       /     \       /     \       /   |", end=f"    / {MajoritiesState.print_cell(3, Direcao1[2])} \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \___/ {MajoritiesState.print_cell(1, Direcao1[2])} \   |   / {MajoritiesState.print_cell(1, Direcao2[2])} \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \___/ {MajoritiesState.print_cell(3, Direcao2[2])} \   |   / {MajoritiesState.print_cell(0, Direcao3[2])} \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/ {MajoritiesState.print_cell(4, Direcao3[2])} \        \n")
+            print(f"   \_____/  {MajoritiesState.print_cell(12,tabuleiro)}   \_____/  {MajoritiesState.print_cell(13,tabuleiro)}   \_____/    |", end=f"    \___/ {MajoritiesState.print_cell(3, Direcao1[2])} \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \___/   |   \___/ {MajoritiesState.print_cell(2, Direcao2[2])} \___/ {MajoritiesState.print_cell(3, Direcao2[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___/        \n")
+            print(f"         \       /     \       /          |", end=f"    / {MajoritiesState.print_cell(4, Direcao1[2])} \___/ {MajoritiesState.print_cell(3, Direcao1[2])} \___/ {MajoritiesState.print_cell(2, Direcao1[2])} \   |   / {MajoritiesState.print_cell(2, Direcao2[2])} \___/ {MajoritiesState.print_cell(3, Direcao2[2])} \___/ {MajoritiesState.print_cell(4, Direcao2[2])} \   |   / {MajoritiesState.print_cell(0, Direcao3[2])} \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/ {MajoritiesState.print_cell(4, Direcao3[2])} \        \n")
+            print(f"          \_____/  {MajoritiesState.print_cell(14,tabuleiro)}   \_____/           |", end=f"    \___/ {MajoritiesState.print_cell(4, Direcao1[2])} \___/ {MajoritiesState.print_cell(3, Direcao1[2])} \___/   |   \___/ {MajoritiesState.print_cell(3, Direcao2[2])} \___/ {MajoritiesState.print_cell(4, Direcao2[2])} \___/   |   \___/ {MajoritiesState.print_cell(1, Direcao3[2])} \___/ {MajoritiesState.print_cell(3, Direcao3[2])} \___/        \n")
+            print(f"                \       /                 |", end=f"        \___/ {MajoritiesState.print_cell(4, Direcao1[2])} \___/       |       \___/ {MajoritiesState.print_cell(4, Direcao2[2])} \___/       |       \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/            \n")
+            print(f"                 \_____/                  |", end=f"            \___/           |           \___/           |           \___/                \n")
+
+    
+    def check_winner_cloned(self,d1,d2,d3,cloned_state):
+
+        Vencedorp1 = 0
+        Vencedorp2 = 0
+
+        if(d1[1][0] == 3):
+            Vencedorp1 += 1
+        if(d1[1][1] == 3):
+            Vencedorp2 += 1
+
+        if(d2[1][0] == 3):
+            Vencedorp1 += 1
+        if(d2[1][1] == 3):
+            Vencedorp2 += 1
+
+        if(d3[1][0] == 3):
+            Vencedorp1 += 1
+        if(d3[1][1] == 3):
+            Vencedorp2 += 1
+
+        if Vencedorp1 >= 2:
+            return 1
+        if Vencedorp2 >= 3:
+            return 2
+        
+        pecastabuleiro = 0
+        for i in cloned_state:
+            if(i == f'A' or i == f'B'):
+                pecastabuleiro += 1
+
+        if pecastabuleiro == 15:
+            Vencedorp1 = 0
+            Vencedorp2 = 0
+            if(d1[1][0] > d1[1][1]):
+                Vencedorp1 += 1
+            else:
+                Vencedorp2 += 1
+
+            if(d2[1][0] > d2[1][1]):
+                Vencedorp1 += 1
+            else:
+                Vencedorp2 += 1
+
+            if(d3[1][0] > d3[1][1]):
+                Vencedorp1 += 1
+            else:
+                Vencedorp2 += 1
+
+            if(Vencedorp1 > Vencedorp2):
+                return 1
+            else:
+                return 2
+
+        return 0
+    
+    def get_possible_actions_cloned(self,cloned_state):
+        
+        actions = []
+
+        
+        for i in cloned_state:
+            if i not in ['B','A']:
+                actions.append(i) # Adiciona a posição não ocupada ao array
+        return actions
+
+    def put_piece_cloned(x, playerV,cloned_state):
+        if(playerV==True):
+            cloned_state[x-1] = f'B'
+        else:
+            cloned_state[x-1] = f'A'
+
+
+
+    def ContaPecas_cloned(self, tuplo,cloned_state):
+        nA=0
+        nB=0
+        i=0
+        while(i < 3):
+            if cloned_state[tuplo[i]-1] == f'B':
+                    nB += 1
+            elif cloned_state[tuplo[i]-1] == f'A':
+                    nA += 1
+            i +=  1
+
+        if nA > nB and nA> 1:
+            return 'A'
+        if nA < nB and nB>1:
+            return 'B'
+        
+        return 'X'
+    
+    def ContaDirecao_cloned(self, direcao, state, cloned_state):
+        i=0
+        dA=0
+        dB=0
+
+
+        while i<5:
+            V = state.ContaPecas_cloned(self, direcao[0][i],cloned_state)
+            if(V=='A'):
+                dA += 1
+                direcao[2][i] = f'A'
+            elif(V=='B'):
+                dB += 1
+                direcao[2][i] = f'B'
+            else:
+                direcao[2][i] = ' '
+            i += 1
+
+        direcao[1][0]=dB
+        direcao[1][1]=dA
+
+    def update_cloned(self, state, x, playerV, d1,d2,d3, cloned_state):
+
+
+        state.put_piece_cloned(x, playerV,cloned_state)
+        state.ContaDirecao_cloned(self, d1,state,cloned_state)
+        state.ContaDirecao_cloned(self, d2,state,cloned_state)
+        state.ContaDirecao_cloned(self, d3,state,cloned_state)
 
     def get_result(self, pos) -> Optional[MajoritiesResult]:
         if self.__has_winner:

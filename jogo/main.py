@@ -1,5 +1,6 @@
 from games.majorities.players.minimax import MinimaxMajoritiesPlayer
 from games.majorities.players.greedy import GreedyMajoritiesPlayer
+from games.majorities.players.montecarlo import MonteCarloMajoritiesPlayer
 from games.majorities.players.random import RandomMajoritiesPlayer
 from games.majorities.players.humano import HumanoMajoritiesPlayer
 from games.majorities.simulator import MajoritiesSimulator
@@ -90,6 +91,7 @@ def regras():
     clear()
 
 def menu():
+    print(MonteCarloMajoritiesPlayer('montecarlo').montecarlo(MajoritiesState))
     op = -1
     while op not in ops:
         print("\n-----------------------------------------")
@@ -115,11 +117,14 @@ def menu():
 
 def main():
     
+
     while True:
         op = menu()
         dimensao = 0
 
         clear()
+
+        
         if(op == 1):
             end = 0
             playerV = True
@@ -130,6 +135,7 @@ def main():
             clear()
             texto(p1, p2)
             end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao)
+            
             playerV = False
             while end == 0 :
                 texto(p1, p2)
@@ -160,7 +166,8 @@ def main():
             p1 = input("\n\tIntroduza o nome do Player 1: ")
             p2 = "Greedy"
             texto(p1, p2)
-            end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+            dimensao=3
+            end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao)
             playerV = False
             while end == 0 :
                 end = int(GreedyMajoritiesPlayer("Greedy").get_action(MajoritiesState,playerV))
@@ -168,9 +175,9 @@ def main():
                     break
                 playerV = True
                 texto(p1, p2)
-                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao))
                 texto(p1, p2)
-                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao))
                 if(end != 0):
                     break
                 playerV = False
@@ -186,7 +193,8 @@ def main():
             p1 = input("\n\tIntroduza o nome do Player 1: ")
             p2 = "Random"
             texto(p1, p2)
-            end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+            dimensao=3
+            end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao)
             playerV = False
             while end == 0 :
                 end = int(RandomMajoritiesPlayer("Random").get_action(MajoritiesState,playerV))
@@ -195,9 +203,9 @@ def main():
                     break
                 playerV = True
                 texto(p1, p2)
-                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao))
                 texto(p1, p2)
-                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao))
                 if(end != 0):
                     break
                 playerV = False

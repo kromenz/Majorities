@@ -12,14 +12,15 @@ class RandomMajoritiesPlayer(MajoritiesPlayer):
         super().__init__(name)
 
     def get_action(self, state: MajoritiesState, playerV):
+        dimensao=3
         jogada = randint(1, 15)
-        z=state.validate_action(self,MajoritiesAction,jogada)
+        z=state.validate_action(self,MajoritiesAction,jogada,dimensao)
         if z == True:
             while  z == True:
                 jogada = randint(1, 15)
                 z=state.validate_action(self,MajoritiesAction,jogada)
 
-        state.update(self,state,jogada,playerV)
+        state.update(self,state,jogada,playerV,dimensao)
         if(int(state.check_winner(self) != 0)):
             state.board()
         return int(state.check_winner(self))
