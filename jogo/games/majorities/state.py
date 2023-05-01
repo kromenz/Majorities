@@ -116,7 +116,7 @@ class MajoritiesState(State):
             os.system('clear')
 
 
-    def check_winner(self):
+    def check_winner():
 
         Vencedorp1 = 0
         Vencedorp2 = 0
@@ -234,7 +234,7 @@ class MajoritiesState(State):
     def ContaDirecao5():
         pass
 
-    def ContaPecas(self, tuplo):
+    def ContaPecas(tuplo):
         nA=0
         nB=0
         i=0
@@ -252,14 +252,14 @@ class MajoritiesState(State):
         
         return 'X'
     
-    def ContaDirecao(self, direcao, state):
+    def ContaDirecao(direcao, state):
         i=0
         dA=0
         dB=0
 
 
         while i<5:
-            V = state.ContaPecas(self, direcao[0][i])
+            V = state.ContaPecas(direcao[0][i])
             if(V=='A'):
                 dA += 1
                 direcao[2][i] = f'A'
@@ -273,7 +273,7 @@ class MajoritiesState(State):
         direcao[1][0]=dB
         direcao[1][1]=dA
     
-    def put_piece5(self, state, x, playerV, dimensao,linha):
+    def put_piece5(state, x, playerV, dimensao,linha):
         for i in range(len(linha)):
                 if linha[i] != ' ' and  linha[i] != '  ':
                     if linha[i]==x:
@@ -282,7 +282,7 @@ class MajoritiesState(State):
                         else:
                             linha[i] = f'A'
 
-    def put_piece(self, state, x, playerV, dimensao):
+    def put_piece(state, x, playerV, dimensao):
 
         if(dimensao==3):
             if(playerV==True):
@@ -291,22 +291,22 @@ class MajoritiesState(State):
                 tabuleiro[x-1] = f'A'
                 
         if(dimensao==5):
-            state.put_piece5(self, state, x, playerV, dimensao,l1)
-            state.put_piece5(self, state, x, playerV, dimensao,l2)
-            state.put_piece5(self, state, x, playerV, dimensao,l3)
-            state.put_piece5(self, state, x, playerV, dimensao,l4)
-            state.put_piece5(self, state, x, playerV, dimensao,l5)
-            state.put_piece5(self, state, x, playerV, dimensao,l6)
-            state.put_piece5(self, state, x, playerV, dimensao,l7)
-            state.put_piece5(self, state, x, playerV, dimensao,l8)
-            state.put_piece5(self, state, x, playerV, dimensao,l9)
+            state.put_piece5(state, x, playerV, dimensao,l1)
+            state.put_piece5(state, x, playerV, dimensao,l2)
+            state.put_piece5(state, x, playerV, dimensao,l3)
+            state.put_piece5(state, x, playerV, dimensao,l4)
+            state.put_piece5(state, x, playerV, dimensao,l5)
+            state.put_piece5(state, x, playerV, dimensao,l6)
+            state.put_piece5(state, x, playerV, dimensao,l7)
+            state.put_piece5(state, x, playerV, dimensao,l8)
+            state.put_piece5(state, x, playerV, dimensao,l9)
             
-    def update(self, state, x, playerV,dimensao):
+    def update(state, x, playerV,dimensao):
 
-        state.put_piece(self, state, x, playerV, dimensao)
-        state.ContaDirecao(self, Direcao1,state)
-        state.ContaDirecao(self, Direcao2,state)
-        state.ContaDirecao(self, Direcao3,state)
+        state.put_piece(state, x, playerV, dimensao)
+        state.ContaDirecao(Direcao1,state)
+        state.ContaDirecao(Direcao2,state)
+        state.ContaDirecao(Direcao3,state)
 
     def print_cell(cell, tabuleiro):
         players = {
@@ -399,9 +399,9 @@ class MajoritiesState(State):
         else:
             tabuleiro[action2-1] = f'A'
 
-        state.ContaDirecao(self, Direcao1,state)
-        state.ContaDirecao(self, Direcao2,state)
-        state.ContaDirecao(self, Direcao3,state)
+        state.ContaDirecao(Direcao1,state)
+        state.ContaDirecao(Direcao2,state)
+        state.ContaDirecao(Direcao3,state)
 
         score=0
         if(playerV==True):
@@ -412,9 +412,9 @@ class MajoritiesState(State):
         tabuleiro[action-1]=action
         tabuleiro[action2-1]=action2
 
-        state.ContaDirecao(self, Direcao1,state)
-        state.ContaDirecao(self, Direcao2,state)
-        state.ContaDirecao(self, Direcao3,state)
+        state.ContaDirecao(Direcao1,state)
+        state.ContaDirecao(Direcao2,state)
+        state.ContaDirecao(Direcao3,state)
 
         return score
     
@@ -427,19 +427,16 @@ class MajoritiesState(State):
     def get_acting_player(self) -> int:
         return self.__acting_player
 
-    def clone(self,d1,d2,d3):
+    def clone(tabuleiro,Direcao1,Direcao2,Direcao3):
         cloned_state = tabuleiro.copy()
-        d1
-        d2
-        d3
-        
+       
         d1=Direcao1.copy()
         d2=Direcao2.copy()
         d3=Direcao3.copy()
         
         return cloned_state,d1,d2,d3
     
-    def board_cloned(self, tabuleiro,Direcao1,Direcao2,Direcao3):
+    def board_cloned(tabuleiro,Direcao1,Direcao2,Direcao3):
             print(f"                  _____                   |", end="     \n")
             print(f"                 /     \\                  |", end="     \n")
             print(f"           _____/   {MajoritiesState.print_cell(0,tabuleiro)}   \\_____            |", end="     \n")
@@ -463,7 +460,7 @@ class MajoritiesState(State):
             print(f"                 \_____/                  |", end=f"            \___/           |           \___/           |           \___/                \n")
 
     
-    def check_winner_cloned(self,d1,d2,d3,cloned_state):
+    def check_winner_cloned(d1,d2,d3,cloned_state):
 
         Vencedorp1 = 0
         Vencedorp2 = 0
@@ -518,11 +515,10 @@ class MajoritiesState(State):
 
         return 0
     
-    def get_possible_actions_cloned(self,cloned_state):
+    def get_possible_actions_cloned(cloned_state):
         
         actions = []
 
-        
         for i in cloned_state:
             if i not in ['B','A']:
                 actions.append(i) # Adiciona a posição não ocupada ao array
@@ -536,7 +532,7 @@ class MajoritiesState(State):
 
 
 
-    def ContaPecas_cloned(self, tuplo,cloned_state):
+    def ContaPecas_cloned(tuplo,cloned_state):
         nA=0
         nB=0
         i=0
@@ -554,14 +550,14 @@ class MajoritiesState(State):
         
         return 'X'
     
-    def ContaDirecao_cloned(self, direcao, state, cloned_state):
+    def ContaDirecao_cloned(direcao, state, cloned_state):
         i=0
         dA=0
         dB=0
 
 
         while i<5:
-            V = state.ContaPecas_cloned(self, direcao[0][i],cloned_state)
+            V = state.ContaPecas_cloned(direcao[0][i],cloned_state)
             if(V=='A'):
                 dA += 1
                 direcao[2][i] = f'A'
@@ -575,13 +571,13 @@ class MajoritiesState(State):
         direcao[1][0]=dB
         direcao[1][1]=dA
 
-    def update_cloned(self, state, x, playerV, d1,d2,d3, cloned_state):
+    def update_cloned(state, x, playerV, d1,d2,d3, cloned_state):
 
 
         state.put_piece_cloned(x, playerV,cloned_state)
-        state.ContaDirecao_cloned(self, d1,state,cloned_state)
-        state.ContaDirecao_cloned(self, d2,state,cloned_state)
-        state.ContaDirecao_cloned(self, d3,state,cloned_state)
+        state.ContaDirecao_cloned(d1,state,cloned_state)
+        state.ContaDirecao_cloned(d2,state,cloned_state)
+        state.ContaDirecao_cloned(d3,state,cloned_state)
 
     def get_result(self, pos) -> Optional[MajoritiesResult]:
         if self.__has_winner:
@@ -600,7 +596,11 @@ class MajoritiesState(State):
         pass
 
 
-    def sim_play(self, action):
-        new_state = self.clone()
-        new_state.play(action)
-        return new_state
+    def sim_play(action,action2,playerV,state):
+        new_state = tabuleiro.copy()
+        d1=Direcao1.copy()
+        d2=Direcao2.copy()
+        d3=Direcao3.copy()
+        state.update_cloned(state, action, playerV, d1,d2,d3, new_state)
+        state.update_cloned(state, action2, playerV, d1,d2,d3, new_state)
+        return new_state,d1,d2,d3

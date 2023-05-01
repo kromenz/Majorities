@@ -22,12 +22,12 @@ class HumanoMajoritiesPlayer(MajoritiesPlayer):
                 jogada = int(input("\nLugar Ocupado/Nao Valido\n\nEscolha outro lugar:"))
                 z=state.validate_action(self,MajoritiesAction,jogada,dimensao)
         
-        state.update(self,state,jogada,playerV,dimensao)
+        state.update(state,jogada,playerV,dimensao)
         state.clear()
-        if(int(state.check_winner(self) != 0)):
+        if(int(state.check_winner() != 0)):
             state.board(self, dimensao)
 
-        return int(state.check_winner(self))    
+        return int(state.check_winner())    
     
     def event_action(self, pos: int, action, new_state: State):
         # ignore

@@ -91,7 +91,6 @@ def regras():
     clear()
 
 def menu():
-    print(MonteCarloMajoritiesPlayer('montecarlo').montecarlo(MajoritiesState))
     op = -1
     while op not in ops:
         print("\n-----------------------------------------")
@@ -103,9 +102,11 @@ def menu():
         print("\n")
         print("|\t3. Jogar contra Random \t\t|")
         print("\n")
-        print("|\t4. Jogar entre robots \t\t|")
+        print("|\t4. Jogar contra MonteCarlo \t|")
         print("\n")
-        print("|\t5. Regras do jogo \t\t|")
+        print("|\t5. Jogar entre robots \t\t|")
+        print("\n")
+        print("|\t6. Regras do jogo \t\t|")
         print("\n")
         print("|\t0. Sair \t\t\t|")
         print("-----------------------------------------")
@@ -217,9 +218,34 @@ def main():
             joga_nova()
         
         elif(op == 4):
-            pass
+            end = 0
+            playerV = True
+            p1 = input("\n\tIntroduza o nome do Player 1: ")
+            p2 = "MonteCarlo"
+            texto(p1, p2)
+            dimensao=3
+            end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao)
+            playerV = False
+            while end == 0 :
+                print(end)
+                end = int(MonteCarloMajoritiesPlayer("MonteCarlo").get_action(MajoritiesState,playerV))
+                if(end!=0):
+                    break
+                playerV = True
+                texto(p1, p2)
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao))
+                texto(p1, p2)
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao))
+                if(end != 0):
+                    break
+                playerV = False
+            if end == 1:
+                texto_w(p1)
+            else:
+                texto_w(p2)
+            joga_nova()
 
-        elif(op == 5):
+        elif(op == 6):
             regras()
             
             

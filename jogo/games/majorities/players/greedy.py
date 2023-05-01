@@ -13,7 +13,7 @@ class GreedyMajoritiesPlayer(MajoritiesPlayer):
     def get_action(self, state: MajoritiesState, playerV):
         
         available_actions = state.get_possible_actions(self)
-        max_score = 0
+        max_score = -1
         best_action = []
         
         for action in available_actions:
@@ -29,14 +29,14 @@ class GreedyMajoritiesPlayer(MajoritiesPlayer):
         
         dimensao=3
         jogada = random.choice(best_action)
-        state.update(self, state, jogada[0], playerV,dimensao)
-        state.update(self,state, jogada[1],playerV,dimensao)
+        state.update(state, jogada[0], playerV,dimensao)
+        state.update(state, jogada[1],playerV,dimensao)
 
         state.clear()
-        if(int(state.check_winner(self) != 0)):
-            state.board()
+        if(int(state.check_winner() != 0)):
+            state.board(self,dimensao)
         
-        return int(state.check_winner(self))
+        return int(state.check_winner())
 
     def event_action(self, pos: int, action, new_state: State):
         # ignore

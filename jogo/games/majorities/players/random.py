@@ -18,12 +18,12 @@ class RandomMajoritiesPlayer(MajoritiesPlayer):
         if z == True:
             while  z == True:
                 jogada = randint(1, 15)
-                z=state.validate_action(self,MajoritiesAction,jogada)
+                z=state.validate_action(self,MajoritiesAction,jogada,dimensao)
 
-        state.update(self,state,jogada,playerV,dimensao)
-        if(int(state.check_winner(self) != 0)):
+        state.update(state,jogada,playerV,dimensao)
+        if(int(state.check_winner() != 0)):
             state.board()
-        return int(state.check_winner(self))
+        return int(state.check_winner())
 
     def event_action(self, pos: int, action, new_state: State):
         # ignore
