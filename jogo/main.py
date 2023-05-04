@@ -28,11 +28,11 @@ def clear():
     else:  # Unix (Linux, macOS)
         os.system('clear')
 
-def tamanho():
+""" def tamanho():
     d = 0
     while d not in [3, 5]:
         d = int(input('\tEscolha a dimensao (3 ou 5): '))
-    return d
+    return d """
 
 def texto(p1, p2):
     print("\n------------------------------------------------------------------")
@@ -116,19 +116,17 @@ def menu():
 
 def main():
     
-
     while True:
         op = menu()
         dimensao = 0
 
         clear()
 
-        
         if(op == 1):
             end = 0
             playerV = True
             sim_name = "Majorities - Humano vs Humano"
-            dimensao = int(tamanho())
+            dimensao = 3
             p1 = input("\n\tIntroduza o nome do Player 1: ")
             p2 = input("\n\tIntroduza o nome do Player 2: ")
             clear()
@@ -225,7 +223,6 @@ def main():
             end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao)
             playerV = False
             while end == 0 :
-                print(end)
                 end = int(MonteCarloMajoritiesPlayer("MonteCarlo").get_action(MajoritiesState,playerV))
                 if(end!=0):
                     break

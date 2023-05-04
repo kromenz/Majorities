@@ -18,20 +18,18 @@ class MonteCarloMajoritiesPlayer(MajoritiesPlayer):
         d2 = []
         d3 = []
 
-        
-    
         for play in range(500):
-            playerV=True
-            end=0
+            playerV = True
+            end = 0
             state_clone,d1,d2,d3 = state.clone(new_state,Direcao1,Direcao2,Direcao3)
-            while end==0:
+            while end == 0:
                 playerV=False
                 play = random.choice(state.get_possible_actions_cloned(state_clone))
                 state.update_cloned( state, play, playerV, d1,d2,d3, state_clone)
                 play = random.choice(state.get_possible_actions_cloned(state_clone))
                 state.update_cloned( state, play, playerV, d1,d2,d3, state_clone)
 
-                playerV=True
+                playerV = True
                 if(state.check_winner_cloned(d1,d2,d3,state_clone)!=0):
                     break
 
@@ -43,9 +41,9 @@ class MonteCarloMajoritiesPlayer(MajoritiesPlayer):
                 if(state.check_winner_cloned(d1,d2,d3,state_clone)!=0):
                     break
             
-            if(state.check_winner_cloned(d1,d2,d3,state_clone)==2):
+            if(state.check_winner_cloned(d1,d2,d3,state_clone) == 2):
                     win += 1
-            if(state.check_winner_cloned(d1,d2,d3,state_clone)==1):
+            if(state.check_winner_cloned(d1,d2,d3,state_clone) == 1):
                     lost += 1
             
         

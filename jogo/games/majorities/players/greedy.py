@@ -11,7 +11,6 @@ class GreedyMajoritiesPlayer(MajoritiesPlayer):
         super().__init__(name)
         
     def get_action(self, state: MajoritiesState, playerV):
-        
         available_actions = state.get_possible_actions(self)
         max_score = -1
         best_action = []
@@ -27,7 +26,7 @@ class GreedyMajoritiesPlayer(MajoritiesPlayer):
                     if score == max_score:
                         best_action.append([action,action2])
         
-        dimensao=3
+        dimensao = 3
         jogada = random.choice(best_action)
         state.update(state, jogada[0], playerV,dimensao)
         state.update(state, jogada[1],playerV,dimensao)

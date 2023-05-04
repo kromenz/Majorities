@@ -302,7 +302,6 @@ class MajoritiesState(State):
             state.put_piece5(state, x, playerV, dimensao,l9)
             
     def update(state, x, playerV,dimensao):
-
         state.put_piece(state, x, playerV, dimensao)
         state.ContaDirecao(Direcao1,state)
         state.ContaDirecao(Direcao2,state)
@@ -459,7 +458,6 @@ class MajoritiesState(State):
             print(f"                \       /                 |", end=f"        \___/ {MajoritiesState.print_cell(4, Direcao1[2])} \___/       |       \___/ {MajoritiesState.print_cell(4, Direcao2[2])} \___/       |       \___/ {MajoritiesState.print_cell(2, Direcao3[2])} \___/            \n")
             print(f"                 \_____/                  |", end=f"            \___/           |           \___/           |           \___/                \n")
 
-    
     def check_winner_cloned(d1,d2,d3,cloned_state):
 
         Vencedorp1 = 0
@@ -531,7 +529,6 @@ class MajoritiesState(State):
             cloned_state[x-1] = f'A'
 
 
-
     def ContaPecas_cloned(tuplo,cloned_state):
         nA=0
         nB=0
@@ -555,7 +552,6 @@ class MajoritiesState(State):
         dA=0
         dB=0
 
-
         while i<5:
             V = state.ContaPecas_cloned(direcao[0][i],cloned_state)
             if(V=='A'):
@@ -572,8 +568,6 @@ class MajoritiesState(State):
         direcao[1][1]=dA
 
     def update_cloned(state, x, playerV, d1,d2,d3, cloned_state):
-
-
         state.put_piece_cloned(x, playerV,cloned_state)
         state.ContaDirecao_cloned(d1,state,cloned_state)
         state.ContaDirecao_cloned(d2,state,cloned_state)
@@ -594,7 +588,6 @@ class MajoritiesState(State):
 
     def before_results(self):
         pass
-
 
     def sim_play(action,action2,playerV,state):
         new_state = tabuleiro.copy()
