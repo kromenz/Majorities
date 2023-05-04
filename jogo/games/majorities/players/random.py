@@ -22,7 +22,7 @@ class RandomMajoritiesPlayer(MajoritiesPlayer):
 
         state.update(state,jogada,playerV,dimensao)
         if(int(state.check_winner() != 0)):
-            state.board()
+            state.board(self, dimensao)
         return int(state.check_winner())
 
     def event_action(self, pos: int, action, new_state: State):
