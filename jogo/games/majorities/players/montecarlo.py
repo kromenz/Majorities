@@ -63,7 +63,7 @@ class MonteCarloMajoritiesPlayer(MajoritiesPlayer):
             state.update(state, actions[0], playerV,dimensao)
             state.update(state, actions[1],playerV,dimensao)
 
-            state.board()
+            state.board(self,dimensao)
         
             return int(state.check_winner())
 

@@ -104,9 +104,7 @@ def menu():
         print("\n")
         print("|\t4. Jogar contra MonteCarlo \t|")
         print("\n")
-        print("|\t5. Jogar entre robots \t\t|")
-        print("\n")
-        print("|\t6. Regras do jogo \t\t|")
+        print("|\t5. Regras do jogo \t\t|")
         print("\n")
         print("|\t0. Sair \t\t\t|")
         print("-----------------------------------------")
@@ -245,7 +243,7 @@ def main():
                 texto_w(p2)
             joga_nova()
 
-        elif(op == 6):
+        elif(op == 5):
             regras()
             
             
