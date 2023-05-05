@@ -5,20 +5,23 @@ from games.majorities.result import MajoritiesResult
 from games.state import State
 import os
 
-tabuleiro=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-PecasP= []
-PecasB= []
 
+#lista com as possoveis jogadas no tabuleiro 3*3*3
+tabuleiro=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+
+#Listas para verificar a direção de cima/esquerda para baixo/direita
 LinhasDirecao1= [[1,3,5],[2,7,9],[4,6,12], [8,11,14],[10,13,15]]
 PontDirecao1=[0,0]
 VencedorDirecao1=[' ',' ',' ',' ',' ']
 Direcao1=[LinhasDirecao1,PontDirecao1,VencedorDirecao1]
 
+#Listas para verificar a direção de cima/direita para baixo/esquerda
 LinhasDirecao2=[[1,2,4],[3,6,8],[5,7,10],[9,11,13],[12,14,15]]
 PontDirecao2=[0,0]
 VencedorDirecao2=[' ',' ',' ',' ',' ']
 Direcao2=[LinhasDirecao2,PontDirecao2,VencedorDirecao2]
 
+#Listas para verificar a direção vertical
 LinhasDirecao3=[[4,8,10],[2,6,13],[1,11,15],[3,7,14],[5,9,12]]
 PontDirecao3=[0,0]
 VencedorDirecao3=[' ',' ',' ',' ',' ']
@@ -309,8 +312,8 @@ class MajoritiesState(State):
 
     def print_cell(cell, tabuleiro):
         players = {
-            'A': '\033[96mA\033[0m',
-            'B': '\033[91mB\033[0m',
+            'A': '\033[96m⦿\033[0m',
+            'B': '\033[91m⦿\033[0m',
         }
 
         for p,v in players.items():
@@ -362,8 +365,6 @@ class MajoritiesState(State):
 
     def reset_board():
         tabuleiro[0:15]=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-        PecasP= []
-        PecasB= []
 
         LinhasDirecao1= [[1,3,5],[2,7,9],[4,6,12], [8,11,14],[10,13,15]]
         PontDirecao1[0:2]=[0,0]
