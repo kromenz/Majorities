@@ -49,8 +49,6 @@ class MonteCarloMajoritiesPlayer(MajoritiesPlayer):
         
         return (win * 100)/(win + lost)
 
-            
-
     def get_action(self,state: MajoritiesState, playerV):
         max_score = -1
         best_action = []

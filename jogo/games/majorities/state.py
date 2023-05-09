@@ -118,9 +118,7 @@ class MajoritiesState(State):
         else:  # Unix (Linux, macOS)
             os.system('clear')
 
-
     def check_winner():
-
         Vencedorp1 = 0
         Vencedorp2 = 0
 
@@ -177,8 +175,8 @@ class MajoritiesState(State):
     def get_num_players(self):
         return 2
     
-    def validate_action(self, action: MajoritiesAction, x,dimensao) -> bool:
-        if(dimensao==3):
+    def validate_action(self, action: MajoritiesAction, x, dimensao) -> bool:
+        if(dimensao == 3):
             if(x< 1 or x > 15):
                 return True
             if(tabuleiro[x-1] == f'A' or tabuleiro[x-1] == f'B'):
@@ -231,12 +229,6 @@ class MajoritiesState(State):
                        
             return True
 
-    def ContaPecas5():
-        pass
-
-    def ContaDirecao5():
-        pass
-
     def ContaPecas(tuplo):
         nA=0
         nB=0
@@ -287,22 +279,10 @@ class MajoritiesState(State):
 
     def put_piece(state, x, playerV, dimensao):
 
-        if(dimensao==3):
-            if(playerV==True):
-                tabuleiro[x-1] = f'B'
-            else:
-                tabuleiro[x-1] = f'A'
-                
-        if(dimensao==5):
-            state.put_piece5(state, x, playerV, dimensao,l1)
-            state.put_piece5(state, x, playerV, dimensao,l2)
-            state.put_piece5(state, x, playerV, dimensao,l3)
-            state.put_piece5(state, x, playerV, dimensao,l4)
-            state.put_piece5(state, x, playerV, dimensao,l5)
-            state.put_piece5(state, x, playerV, dimensao,l6)
-            state.put_piece5(state, x, playerV, dimensao,l7)
-            state.put_piece5(state, x, playerV, dimensao,l8)
-            state.put_piece5(state, x, playerV, dimensao,l9)
+        if(playerV==True):
+            tabuleiro[x-1] = f'B'
+        else:
+            tabuleiro[x-1] = f'A'
             
     def update(state, x, playerV,dimensao):
         state.put_piece(state, x, playerV, dimensao)
