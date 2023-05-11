@@ -303,10 +303,13 @@ class MajoritiesState(State):
         return tabuleiro[cell]
             
     def board(self, dimensao):
+        pc = MajoritiesState.print_cell
+        
+        
         if(dimensao==3):
             print(f"                  _____                   |", end="     \n")
             print(f"                 /     \\                  |", end="     \n")
-            print(f"           _____/   {MajoritiesState.print_cell(0,tabuleiro)}   \\_____            |", end="     \n")
+            print(f"           _____/   {pc(0,tabuleiro)}   \\_____            |", end="     \n")
             print(f"          /     \       /     \\           |", end="     \n")
             print(f"    _____/   {MajoritiesState.print_cell(1,tabuleiro)}   \_____/   {MajoritiesState.print_cell(2,tabuleiro)}   \\_____     |", end="     \n")
             print(f"   /     \       /     \       /     \\    |", end="     \n")

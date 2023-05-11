@@ -9,7 +9,7 @@ from games.game_simulator import GameSimulator
 import time
 import os
 
-ops = [0,1,2,3,4,5]
+ops = [0,1,2,3,4,5,6,7,8]
 
 def run_simulation(desc: str, simulator: GameSimulator, iterations: int):
     print(f"----- {desc} -----")
@@ -29,13 +29,15 @@ def clear():
         os.system('clear')
 
 def texto(p1, p2):
+    jogo = "Majorities"
     print("\n------------------------------------------------------------------")
-    print(f"\t\tMajorities - {p1.center(10)} VS {p2.center(10)}")
+    print(f"\t\t\033[93m{jogo.center(10)}\033[0m - \033[91m{p1.center(10)}\033[0m VS \033[96m{p2.center(10)}\033[0m")
     print("------------------------------------------------------------------")
 
 def texto_w(p):
+    winner = "Vencedor"
     print("\n-----------------------------------------")
-    print(f"\tVencedor - {p.center(10)}\t\t")
+    print(f"\t\033[92m{winner.center(10)}\033[0m - {p.center(10)}\t\t")
     print("-----------------------------------------\n")
     
 def joga_nova():
@@ -98,7 +100,13 @@ def menu():
         print("\n")
         print("|\t4. Jogar contra MonteCarlo \t|")
         print("\n")
-        print("|\t5. Regras do jogo \t\t|")
+        print("|\t5. Greedy contra MonteCarlo \t|")
+        print("\n")
+        print("|\t6. Random contra MonteCarlo \t|")
+        print("\n")
+        print("|\t7. Random contra Greedy \t|")
+        print("\n")
+        print("|\t8. Regras do jogo \t\t|")
         print("\n")
         print("|\t0. Sair \t\t\t|")
         print("-----------------------------------------")
@@ -144,9 +152,9 @@ def main():
                 playerV = False
                 
             if end == 1:
-                texto_w(p1)
+                texto_w(f"\033[96m{p1.center(10)}\033[0m")
             else:
-                texto_w(p2)
+                texto_w(f"\033[96m{p2.center(10)}\033[0m")
             joga_nova()
             
         elif(op == 2):
@@ -158,7 +166,7 @@ def main():
             end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao)
             playerV = False
             while end == 0 :
-                end = int(GreedyMajoritiesPlayer("Greedy").get_action(MajoritiesState,playerV))
+                end = int(GreedyMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
                 if(end!=0):
                     break
                 playerV = True
@@ -170,9 +178,9 @@ def main():
                     break
                 playerV = False
             if end == 1:
-                texto_w(p1)
+                texto_w(f"\033[96m{p1}\033[0m")
             else:
-                texto_w(p2)
+                texto_w(f"\033[96m{p2.center(10)}\033[0m")
             joga_nova()
         
         elif(op == 3):
@@ -184,8 +192,8 @@ def main():
             end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao)
             playerV = False
             while end == 0 :
-                end = int(RandomMajoritiesPlayer("Random").get_action(MajoritiesState,playerV))
-                end = int(RandomMajoritiesPlayer("Random").get_action(MajoritiesState,playerV))
+                end = int(RandomMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
+                end = int(RandomMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
                 if(end!=0):
                     break
                 playerV = True
@@ -198,9 +206,9 @@ def main():
                 playerV = False
                 
             if end == 1:
-                texto_w(p1)
+                texto_w(f"\033[96m{p1.center(10)}\033[0m")
             else:
-                texto_w(p2)
+                texto_w(f"\033[96m{p2.center(10)}\033[0m")
             joga_nova()
         
         elif(op == 4):
@@ -212,7 +220,7 @@ def main():
             end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao)
             playerV = False
             while end == 0 :
-                end = int(MonteCarloMajoritiesPlayer("MonteCarlo").get_action(MajoritiesState,playerV))
+                end = int(MonteCarloMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
                 if(end!=0):
                     break
                 playerV = True
@@ -224,14 +232,125 @@ def main():
                     break
                 playerV = False
             if end == 1:
-                texto_w(p1)
+                texto_w(f"\033[96m{p1.center(10)}\033[0m")
             else:
-                texto_w(p2)
+                texto_w(f"\033[96m{p2.center(10)}\033[0m")
+            joga_nova()
+            
+        elif(op == 4):
+            end = 0
+            playerV = True
+            p1 = input("\n\tIntroduza o nome do Player 1: ")
+            p2 = "MonteCarlo"
+            texto(p1, p2)
+            end = HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao)
+            playerV = False
+            while end == 0 :
+                end = int(MonteCarloMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
+                if(end!=0):
+                    break
+                playerV = True
+                texto(p1, p2)
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao))
+                texto(p1, p2)
+                end = int(HumanoMajoritiesPlayer(p1).get_action(MajoritiesState,playerV,dimensao))
+                if(end != 0):
+                    break
+                playerV = False
+            if end == 1:
+                texto_w(f"\033[96m{p1.center(10)}\033[0m")
+            else:
+                texto_w(f"\033[96m{p2.center(10)}\033[0m")
+            joga_nova()
+            
+        elif(op == 5):
+            end = 0
+            playerV = True
+            p1 = "Greedy"
+            p2 = "MonteCarlo"
+            end = RandomMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+            playerV = False
+            while end == 0 :
+                texto(p1, p2)
+                MajoritiesState.board(MajoritiesState,dimensao)
+                input()
+                end = int(MonteCarloMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
+                if(end!=0):
+                    break
+                playerV = True
+                texto(p1, p2)
+                MajoritiesState.board(MajoritiesState,dimensao)
+                input()
+                end = int(GreedyMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                if(end != 0):
+                    break
+                playerV = False
+            if end == 1:
+                texto_w(f"\033[96m{p1.center(10)}\033[0m")
+            else:
+                texto_w(f"\033[96m{p2.center(10)}\033[0m")
+            joga_nova()
+            
+        elif(op == 6):
+            end = 0
+            playerV = True
+            p1 = "Random"
+            p2 = "MonteCarlo"
+            end = RandomMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+            playerV = False
+            while end == 0 :
+                texto(p1, p2)
+                MajoritiesState.board(MajoritiesState,dimensao)
+                input()
+                end = int(MonteCarloMajoritiesPlayer(p2).get_action(MajoritiesState,playerV))
+                if(end!=0):
+                    break
+                playerV = True
+                texto(p1, p2)
+                MajoritiesState.board(MajoritiesState,dimensao)
+                input()
+                end = int(RandomMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                end = int(RandomMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                if(end != 0):
+                    break
+                playerV = False
+            if end == 1:
+                texto_w(f"\033[96m{p1.center(10)}\033[0m")
+            else:
+                texto_w(f"\033[96m{p2.center(10)}\033[0m")
+            joga_nova()
+            
+        elif(op == 7):
+            end = 0
+            playerV = True
+            p2 = "Greedy"
+            p1 = "Random"
+            end = RandomMajoritiesPlayer(p1).get_action(MajoritiesState,playerV)
+            playerV = False
+            while end == 0 :
+                texto(p1, p2)
+                MajoritiesState.board(MajoritiesState,dimensao)
+                input()
+                end = int(GreedyMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                if(end!=0):
+                    break
+                playerV = True
+                texto(p1, p2)
+                MajoritiesState.board(MajoritiesState,dimensao)
+                input()
+                end = int(RandomMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                end = int(RandomMajoritiesPlayer(p1).get_action(MajoritiesState,playerV))
+                if(end != 0):
+                    break
+                playerV = False
+            if end == 1:
+                texto_w(f"\033[96m{p1.center(10)}\033[0m")
+            else:
+                texto_w(f"\033[96m{p2.center(10)}\033[0m")
             joga_nova()
 
-        elif(op == 5):
+        elif(op == 8):
             regras()
-            
             
         elif(op == 0):
             sair()
